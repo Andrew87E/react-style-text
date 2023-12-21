@@ -14,6 +14,12 @@ Install via npm:
 npm i react-text-styler
 ```
 
+Install via yarn:
+
+```
+yarn add react-text-styler
+```
+
 ## Usage
 
 To use react-text-styler in your react project, wrap the content with a `StyledText` component and customize the animation with relevant properties.
