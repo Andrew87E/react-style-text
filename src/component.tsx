@@ -2,24 +2,33 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
-interface AnimationProps {
+type AnimationProps = {
   duration?: string;
   timing?: string;
   delay?: string;
   elementType?: AnimationName | null;
-  iteration?: string;
+  iteration?: number;
   direction?: string;
   fillMode?: string;
-}
+};
 
-interface StyledTextProps {
-  children: JSX.Element | JSX.Element[];
+type StyledTextProps = {
+  children?:
+    | JSX.Element
+    | JSX.Element[]
+    | string
+    | string[]
+    | number
+    | number[];
   elementType?: AnimationName | null;
   animationProps: AnimationProps;
-  heading?: string;
+};
+
+type TypewriterProps = StyledTextProps & {
   dataText: string[];
+  heading?: string;
   cursorColor?: string;
-}
+};
 
 const StyledElement = styled.div<AnimationProps>`
   margin: 0;
@@ -36,21 +45,22 @@ const StyledElement = styled.div<AnimationProps>`
 
 type AnimationName = keyof typeof ElementType;
 
-const StyledText: React.FC<StyledTextProps> = ({
-  children,
-  elementType = null,
-  animationProps,
-  heading,
-  dataText,
-  cursorColor,
-}: StyledTextProps) => {
-  return elementType === "typewriter" ? (
-    <Typer heading={heading} dataText={dataText} cursorColor={cursorColor} />
-  ) : (
-    <StyledElement elementType={elementType} {...animationProps}>
-      {children}
-    </StyledElement>
-  );
+const StyledText: React.FC<StyledTextProps | TypewriterProps> = (props) => {
+  if ("dataText" in props) {
+    return (
+      <Typer
+        heading={props.heading}
+        dataText={props.dataText}
+        cursorColor={props.cursorColor}
+      />
+    );
+  } else {
+    return (
+      <StyledElement elementType={props.elementType} {...props.animationProps}>
+        {props.children}
+      </StyledElement>
+    );
+  }
 };
 
 /* ========== basic animations ========== */

@@ -1,6 +1,3 @@
-import StyledText from './component'
-
-
-export { default as StyledText } from './component'
-
-export default StyledText
+import StyledText from './component';
+export { StyledText };
+export default StyledText;
