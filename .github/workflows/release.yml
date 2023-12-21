@@ -42,11 +42,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+        run: |
+          gh release upload ${{ steps.package_version.outputs.version }} ./dist/my-package.tgz
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/my-package.tgz
-          asset_name: my-package.tgz
-          asset_content_type: application/gzip
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
