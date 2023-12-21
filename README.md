@@ -130,8 +130,8 @@ const AnimationChain = () => {
 
   return (
     <StyledText
-    animationProps={{
       onAnimationEnd={handleChainAnimation}
+      animationProps={{
       type={animationType}
       duration="1000ms"
       timing="linear"
@@ -144,7 +144,7 @@ const AnimationChain = () => {
 };
 ```
 
-## Tpewriter Animation
+## Typewriter Animation
 
 A string array of animation names used to wrap the animations you want to chain.
 
@@ -165,12 +165,6 @@ const MyTypewriter = () => {
   );
 };
 ```
-
-## Author
-
-[![Andrew Edwards](https://avatars.githubusercontent.com/u/106359255?size=100)](https://github.com/andrew87e)
-
-[Andrew Edwards](https://github.com/andrew87e)
 
 ## [License](https://github.com/Andrew87E/Horiseon-Marketing/blob/main/LICENSE)
 
