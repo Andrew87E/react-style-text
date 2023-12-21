@@ -2,7 +2,7 @@ var path = require("path");
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+  entry: "./dist/index.js",
   output: {
     path: path.resolve("build"),
     filename: "index.js",
@@ -14,21 +14,23 @@ module.exports = {
       commonjs2: "styled-components",
       amd: "styled-components",
     },
+    react: "react",
   },
   module: {
     rules: [
-      //...
       {
-        test: /\.tsx?$/,
-        use: "ts-loader",
+        test: /\.js$/,
         exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
-  externals: {
-    react: "react",
+    extensions: [".js"],
   },
 };
