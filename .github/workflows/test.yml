@@ -19,3 +19,13 @@ jobs:
 
       - name: Run Tests
         run: npm test
+
+      # - name: Version Up
+      # run: |
+      #   if [[ "${{ github.ref }}" == refs/heads/release/* ]]; then
+      #     npm version patch
+      #   elif [[ "${{ github.ref }}" == "refs/heads/stable" ]]; then
+      #     npm version minor
+      #   else
+      #     echo "Not main or develop branch, skipping version bump"
+      #   fi
