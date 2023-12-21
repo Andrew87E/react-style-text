@@ -1,17 +1,18 @@
 {
   "name": "react-style-text",
   "homepage": "https://github.com/Andrew87E/react-style-text",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "revival of react-moving-text with typescript",
   "repository": {
     "type": "git",
     "url": "https://github.com/Andrew87E/react-style-text"
   },
-  "main": "",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack --watch",
     "build": "npx tsc && webpack && npm pack",
     "predeploy": "cd example && npm install && npm run build && ",
+    "prepublish": "rm -rf ./dist && npm run build",
     "deploy": "gh-pages -d example/dist",
     "test": "jest"
   },
@@ -43,10 +44,13 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
+    "@babel/preset-typescript": "^7.23.3",
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
-    "styled-components": ">= 4"
+    "styled-components": ">= 4",
+    "react": ">=15.0.1",
+    "react-dom": ">=15.0.1"
   },
   "bugs": {
     "url": "https://github.com/Andrew87E/react-styled-text/issues"
@@ -55,8 +59,5 @@
     "build",
     "dist"
   ],
-  "dependencies": {
-    "@babel/preset-typescript": "^7.23.3"
-  },
   "typings": "./dist/index.d.ts"
 }

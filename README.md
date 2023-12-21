@@ -1,7 +1,7 @@
 # react-style-text
 
 [![Tests](https://github.com/Andrew87E/react-style-text/actions/workflows/test.yml/badge.svg)](https://github.com/Andrew87E/react-style-text/actions/workflows/test.yml)
-
+[![Release](https://github.com/Andrew87E/react-style-text/actions/workflows/release.yml/badge.svg)](https://github.com/Andrew87E/react-style-text/actions/workflows/release.yml)
 [![Publish to npm](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml/badge.svg?branch=stable)](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml)
 
 React Component to show animated text and objects, built with [styled-components](https://www.styled-components.com/).
