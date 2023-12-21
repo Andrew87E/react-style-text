@@ -12,7 +12,7 @@ interface AnimationProps {
   fillMode?: string;
 }
 
-interface MovingComponentProps {
+interface StyledTextProps {
   children: JSX.Element | JSX.Element[];
   elementType?: AnimationName | null;
   animationProps: AnimationProps;
@@ -36,14 +36,14 @@ const StyledElement = styled.div<AnimationProps>`
 
 type AnimationName = keyof typeof ElementType;
 
-const MovingComponent: React.FC<MovingComponentProps> = ({
+const StyledText: React.FC<StyledTextProps> = ({
   children,
   elementType = null,
   animationProps,
   heading,
   dataText,
   cursorColor,
-}: MovingComponentProps) => {
+}: StyledTextProps) => {
   return elementType === "typewriter" ? (
     <Typer heading={heading} dataText={dataText} cursorColor={cursorColor} />
   ) : (
@@ -706,4 +706,4 @@ const ElementType = {
   typewriter: typewriter,
 };
 
-export default MovingComponent;
+export default StyledText;

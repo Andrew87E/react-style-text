@@ -1,7 +1,7 @@
 import React from "react"
-import MovingComponent from './component'
+import StyledText from './component'
 
 
-export { default as MovingComponent } from './component'
+export { default as StyledText } from './component'
 
-export default MovingComponent
+export default StyledText
