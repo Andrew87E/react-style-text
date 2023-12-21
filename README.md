@@ -100,10 +100,6 @@ const MyAnimatedTypo = () => {
 | rotateCW       | shakeHorizontal | squeezeHorizontal |
 | rotateACW      | shakeVertical   | squeezeVertical   |
 
-- For multiline texts
-
-  - `typewriter`
-
 ## Chain Animation
 
 A string array of animation names used to wrap the animations you want to chain.

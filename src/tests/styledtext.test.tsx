@@ -14,6 +14,7 @@ describe("StyledText", () => {
         Test DataText
       </StyledText>
     );
+
     expect(await screen.getByText("Test DataText")).toBeInTheDocument();
   });
 });
