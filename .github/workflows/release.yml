@@ -37,7 +37,8 @@ jobs:
             --title "Release ${{ steps.package_version.outputs.version }}" \
             --notes "" \
             --repo ${{ github.repository }} \
-            --target ${{ github.sha }}
+            --target ${{ github.sha }} \
+            ./dist/my-package.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
