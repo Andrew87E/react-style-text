@@ -10,10 +10,14 @@ import { StyledText } from "../index";
 describe("StyledText", () => {
   test("renders correctly", async () => {
     render(
-      <StyledText animationProps={{ animationname: "bounce" }}>
+      <StyledText
+        data-testid="text"
+        animationProps={{ animationname: "bounce" }}
+      >
         Test DataText
       </StyledText>
     );
+    expect(screen.getByTestId("text")).toBeInTheDocument();
     expect(await screen.getByText("Test DataText")).toBeInTheDocument();
   });
 });

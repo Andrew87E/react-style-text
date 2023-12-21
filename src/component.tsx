@@ -4,6 +4,7 @@ import Typer from "./typer";
 
 type AnimationProps = {
   animationname: AnimationName;
+  byLetter?: boolean;
   duration?: string;
   timing?: string;
   delay?: string;
@@ -12,7 +13,7 @@ type AnimationProps = {
   fillMode?: string;
 };
 
-type StyledTextProps = {
+type StyledTextProps = React.HTMLAttributes<HTMLDivElement> & {
   children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
   animationProps?: AnimationProps;
 };
@@ -35,6 +36,7 @@ const StyledElement = styled.div<AnimationProps>`
   animation-iteration-count: ${({ iteration }) => iteration || "infinite"};
   animation-direction: ${({ direction }) => direction || "alternate"};
   animation-fill-mode: ${({ fillMode }) => fillMode || "forwards"};
+  byletter: ${({ byLetter }) => (byLetter ? "true" : "false")};
 `;
 
 type AnimationName = keyof typeof Animations;
