@@ -1,7 +1,7 @@
 {
   "name": "react-style-text",
   "homepage": "https://github.com/Andrew87E/react-style-text",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "revival of react-moving-text with typescript",
   "repository": {
     "type": "git",
@@ -57,5 +57,6 @@
   ],
   "dependencies": {
     "@babel/preset-typescript": "^7.23.3"
-  }
+  },
+  "typings": "./dist/index.d.ts"
 }

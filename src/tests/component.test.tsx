@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import StyledText from "../index";
+import { StyledText } from "../index";
 
 /**
  * @jest-environment jsdom
@@ -28,7 +28,6 @@ test("renders typewriter correctly", async () => {
   );
 
   // we need to wait for the animation to finish. it comes in letter by letter. so we need to wait for the last letter to be rendered.
-  
 
   // await waitFor(() => {
   //   expect(screen.getByText(/Test DataText/)).toBeInTheDocument();
