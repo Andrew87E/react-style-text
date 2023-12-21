@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve("build"),
     filename: "index.js",
-    libraryTarget: "commonjs2"
+    libraryTarget: "commonjs2",
   },
   externals: {
     "styled-components": {
@@ -17,14 +17,18 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      //...
       {
-        test: /\.css$/,
-        loader: "style-loader!css-loader"
-      }
-    ]
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   externals: {
-    react: "react"
-  }
+    react: "react",
+  },
 };

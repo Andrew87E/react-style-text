@@ -1,22 +1,64 @@
-import React from "react"
-import styled, { keyframes } from "styled-components"
-import Typer from "./typer"
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import Typer from "./typer";
 
-const MovingComponent = ({children, type = null, ...props}) => {
-  return (
-    type === "typewriter"
-    ? <Typer heading={props.heading} dataText={props.dataText} cursorColor={props.cursorColor} />
-    : <StlyedElement type={type} {...props}>{children}</StlyedElement>
-  )
+interface AnimationProps {
+  duration?: string;
+  timing?: string;
+  delay?: string;
+  elementType?: AnimationName | null;
+  iteration?: string;
+  direction?: string;
+  fillMode?: string;
 }
 
+interface MovingComponentProps {
+  children: JSX.Element | JSX.Element[];
+  elementType?: AnimationName | null;
+  animationProps: AnimationProps;
+  heading?: string;
+  dataText: string[];
+  cursorColor?: string;
+}
+
+const StyledElement = styled.div<AnimationProps>`
+  margin: 0;
+  padding: 0;
+  animation-name: ${(props) =>
+    props.elementType ? ElementType[props.elementType] : ElementType["spin"]};
+  animation-duration: ${(props) => props.duration || "1s"};
+  animation-timing-function: ${(props) => props.timing || "ease"};
+  animation-delay: ${(props) => props.delay || "0s"};
+  animation-iteration-count: ${(props) => props.iteration || "infinite"};
+  animation-direction: ${(props) => props.direction || "alternate"};
+  animation-fill-mode: ${(props) => props.fillMode || "forwards"};
+`;
+
+type AnimationName = keyof typeof ElementType;
+
+const MovingComponent: React.FC<MovingComponentProps> = ({
+  children,
+  elementType = null,
+  animationProps,
+  heading,
+  dataText,
+  cursorColor,
+}: MovingComponentProps) => {
+  return elementType === "typewriter" ? (
+    <Typer heading={heading} dataText={dataText} cursorColor={cursorColor} />
+  ) : (
+    <StyledElement elementType={elementType} {...animationProps}>
+      {children}
+    </StyledElement>
+  );
+};
 
 /* ========== basic animations ========== */
 
 const blur = keyframes`
   from { filter: blur(0px); }
   to { filter: blur(6px); }
-`
+`;
 const bounce = keyframes`
   10% { transform: scaleY(0.9) translateY(5%); }
   45% { transform: scaleY(1.2) translateY(-100%); }
@@ -24,7 +66,7 @@ const bounce = keyframes`
   75% { transform: scaleY(1.05) translateY(-25%); }
   85% { transform: scaleY(1) translateY(0); }
   100% { transform: scaleY(1) translateY(0%); }
-`
+`;
 const effect3D = keyframes`
   to {
     text-shadow:
@@ -39,42 +81,42 @@ const effect3D = keyframes`
     0 3px 5px rgba(0, 0, 0, .2),
     0 5px 10px rgba(0, 0, 0, .25)
   }
-`
+`;
 const flash = keyframes`
   0%, 40%, 80% { opacity: 1; }
   20%, 60%, 100% { opacity: 0; }
-`
+`;
 const float = keyframes`
   0% { transform: translate(2%, -10%) rotate(-1deg); }
   100% { transform: translate(-2%, 5%) rotate(3deg); }
-`
+`;
 const glowing = keyframes`
   0% { color: inherit; text-shadow: none; }
   2%, 59%, 64%, 79% { color: #fff; }
   3%, 59%, 63%, 78% { text-shadow: 0px 0px 60px, 0 0 22px, 0 0 1em inherit, 0 0 0.5em inherit, 0 0 .1em inherit, 0 10px 3px #000; }
   60% { color: inherit; text-shadow: none; }
   75% { color: inherit; text-shadow: none; }
-`
+`;
 const jelly = keyframes`
   0% { transform: scaleX(1); }
   20% { transform: scaleX(0.9); }
   50% { transform: scaleX(1.25); }
   85% { transform: scaleX(0.8); }
   100% { transform: scaleX(1); }
-`
+`;
 const pulse = keyframes`
   from { transform: scale(1); }
   to { transform: scale(1.1); }
-`
+`;
 const shadow = keyframes`
   0%   { text-shadow: 1px 1px 0px #333; }
 	50%   { text-shadow: 3px 3px 2px #333; }
 	100%  { text-shadow: 9px 10px 6px #999; }
-`
+`;
 const spin = keyframes`
   from { transform: rotateY(0deg); }
   to { transform: rotateY(-360deg); }
-`
+`;
 const swing = keyframes`
   0% {
     transform: rotateZ(0deg);
@@ -100,76 +142,73 @@ const swing = keyframes`
     transform: rotateZ(0deg);
     transform-origin: center top;
   }
-`
-
-
+`;
 
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
-`
+`;
 const fadeInFromLeft = keyframes`
   from {
     opacity: 0;
     transform: translateX(-100%);
   }
   to { opacity: 1 }
-`
+`;
 const fadeInFromRight = keyframes`
   from {
     opacity: 0;
     transform: translateX(100%);
   }
   to { opacity: 1 }
-`
+`;
 const fadeInFromTop = keyframes`
   from {
     opacity: 0;
     transform: translateY(-100%);
   }
   to { opacity: 1 }
-`
+`;
 const fadeInFromBottom = keyframes`
   from {
     opacity: 0;
     transform: translateY(100%);
   }
   to { opacity: 1 }
-`
-
+`;
 
 const fadeOut = keyframes`
   from { opacity: 1; }
   to { opacity: 0; }
-`
+`;
 const fadeOutToLeft = keyframes`
   from { opacity: 1; }
   to {
     opacity: 0;
     transform: translateX(-100%);
   }
-`
+`;
 const fadeOutToRight = keyframes`
   from { opacity: 1; }
   to {
     opacity: 0;
     transform: translateX(100%);
   }
-`
+`;
 const fadeOutToTop = keyframes`
   from { opacity: 1; }
   to {
     opacity: 0;
     transform: translateY(-100%);
   }
-`
+`;
 const fadeOutToBottom = keyframes`
   from { opacity: 1; }
   to {
     opacity: 0;
     transform: translateY(100%);
   }
-`
+`;
 
 const hangOnLeft = keyframes`
   0% { transform-origin: left; }
@@ -201,7 +240,7 @@ const hangOnLeft = keyframes`
     transform: rotate(90deg);
     transform-origin: left;
   }
-`
+`;
 const hangOnRight = keyframes`
   0% { transform-origin: right; }
   30% {
@@ -232,8 +271,7 @@ const hangOnRight = keyframes`
     transform: rotate(-90deg);
     transform-origin: right;
   }
-`
-
+`;
 
 const squeezeMix = keyframes`
   0% { transform: scale(1, 1); }
@@ -243,7 +281,7 @@ const squeezeMix = keyframes`
   70% { transform: scale(1.3, 1.3); }
   85% { transform: scale(0.95, 0.95); }
   100% { transform: scale(1, 1); }
-`
+`;
 const squeezeHorizontal = keyframes`
   0% { transform: scaleX(1); }
   15% { transform: scaleX(0.95); }
@@ -252,7 +290,7 @@ const squeezeHorizontal = keyframes`
   70% { transform: scaleX(1.3); }
   85% { transform: scaleX(0.95); }
   100% { transform: scaleX(1); }
-`
+`;
 const squeezeVertical = keyframes`
   0% { transform: scaleY(1); }
   15% { transform: scaleY(0.95); }
@@ -261,8 +299,7 @@ const squeezeVertical = keyframes`
   70% { transform: scaleY(1.3); }
   85% { transform: scaleY(0.95); }
   100% { transform: scaleY(1); }
-`
-
+`;
 
 const shakeMix = keyframes`
   0% { transform: translate(2px, 1px) rotate(0deg); }
@@ -276,18 +313,17 @@ const shakeMix = keyframes`
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(2px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
-`
+`;
 const shakeHorizontal = keyframes`
   5%, 13%, 22%, 31%, 40%, 49%, 58%, 67%, 76%, 85%, 94% { transform: translateX(6px) }
   10%, 15%, 24%, 33%, 42%, 51%, 60%, 69%, 78%, 87%, 96% { transform: translateX(2px) }
   15%, 18%, 27%, 36%, 45%, 54%, 63%, 72%, 81%, 90%, 99% { transform: translateX(-4px) }
-`
+`;
 const shakeVertical = keyframes`
   5%, 13%, 22%, 31%, 40%, 49%, 58%, 67%, 76%, 85%, 94% { transform: translateY(6px) }
   10%, 15%, 24%, 33%, 42%, 51%, 60%, 69%, 78%, 87%, 96% { transform: translateY(2px) }
   15%, 18%, 27%, 36%, 45%, 54%, 63%, 72%, 81%, 90%, 99% { transform: translateY(-4px) }
-`
-
+`;
 
 const flip = keyframes`
   0% {
@@ -298,7 +334,7 @@ const flip = keyframes`
     transform: perspective(1000px) rotateX(0deg);
     transform-origin: center;
   }
-`
+`;
 const flipIn = keyframes`
   0% {
     transform: rotateX(180deg);
@@ -315,7 +351,7 @@ const flipIn = keyframes`
     transform: rotateX(360deg);
     opacity: 1;
   }
-`
+`;
 const flipOut = keyframes`
   0% {
     transform: rotateX(0deg);
@@ -332,7 +368,7 @@ const flipOut = keyframes`
     transform: rotateX(180deg);
     opacity: 0;
   }
-`
+`;
 const flipSlowDown = keyframes` // tbm
   0% {
     transform:rotateX(0deg);
@@ -352,7 +388,7 @@ const flipSlowDown = keyframes` // tbm
   70%, 100% {
     transform: rotateX(5turn);
   }
-`
+`;
 const flipToTop = keyframes`
   from {
     transform: rotateX(-90deg);
@@ -364,7 +400,7 @@ const flipToTop = keyframes`
     transform-origin: center top;
     opacity: 0;
   }
-`
+`;
 const flipToBottom = keyframes`
   from {
     opacity: 1;
@@ -376,7 +412,7 @@ const flipToBottom = keyframes`
     transform-origin: 0%, 0%;
     transform: rotateX(-90deg) translateY(50px);
   }
-`
+`;
 const flipFromTop = keyframes`
   from {
     opacity: 0;
@@ -388,7 +424,7 @@ const flipFromTop = keyframes`
     transform-origin: 0%, 0%;
     transform: rotateX(0deg) ;
   }
-`
+`;
 const flipFromBottom = keyframes`
   from {
     transform: rotateX(-90deg);
@@ -400,7 +436,7 @@ const flipFromBottom = keyframes`
     transform-origin: 50% 0;
     opacity: 1;
   }
-`
+`;
 const flipFromLeftToCenter = keyframes`
   0% {
     transform: rotateY(-95deg)  translateX(-200px) ;
@@ -410,7 +446,7 @@ const flipFromLeftToCenter = keyframes`
     transform: rotateY(0deg);
     transform-origin: left;
   }
-`
+`;
 
 const slideInFromLeft = keyframes`
   0% {
@@ -425,7 +461,7 @@ const slideInFromLeft = keyframes`
     opacity: 1;
     transform: translateX(0);
   }
-`
+`;
 const slideInFromRight = keyframes`
   0% {
     opacity: 0;
@@ -439,7 +475,7 @@ const slideInFromRight = keyframes`
     opacity: 1;
     transform: translateX(0);
   }
-`
+`;
 const slideOutToLeft = keyframes`
   0% {
     opacity: 1;
@@ -453,7 +489,7 @@ const slideOutToLeft = keyframes`
     opacity: 0;
     transform: translateX(-100%);
   }
-`
+`;
 const slideOutToRight = keyframes`
   0% {
     opacity: 1;
@@ -467,7 +503,7 @@ const slideOutToRight = keyframes`
     opacity: 0;
     transform: translateX(100%);
   }
-`
+`;
 const slideInFromTop = keyframes`
   0% {
     opacity: 0;
@@ -481,7 +517,7 @@ const slideInFromTop = keyframes`
     opacity: 1;
     transform: translateY(0);
   }
-`
+`;
 const slideInFromBottom = keyframes`
   0% {
     opacity: 0;
@@ -495,7 +531,7 @@ const slideInFromBottom = keyframes`
     opacity: 1;
     transform: translateY(0);
   }
-`
+`;
 const slideOutToTop = keyframes`
   0% {
     opacity: 1;
@@ -509,7 +545,7 @@ const slideOutToTop = keyframes`
     opacity: 0;
     transform: translateY(-100%);
   }
-`
+`;
 const slideOutToBottom = keyframes`
   0% {
     opacity: 1;
@@ -523,7 +559,7 @@ const slideOutToBottom = keyframes`
     opacity: 0;
     transform: translateY(100%);
   }
-`
+`;
 
 const fold = keyframes`
   0% { transform: scale3d(1, 1, 1); }
@@ -533,7 +569,7 @@ const fold = keyframes`
     opacity: 0;
     transform: scale3d(0.2, 0.2, 0.2);
   }
-`
+`;
 const unfold = keyframes`
   0% {
     opacity: 0;
@@ -544,17 +580,16 @@ const unfold = keyframes`
   }
   60% { transform: scale3d(0.4, 1, 1); }
   100% { transform: scale3d(1, 1, 1); }
-`
-
+`;
 
 const zoomIn = keyframes`
   from { transform: scale(2); }
   to { transform: scale(1); }
-`
+`;
 const zoomOut = keyframes`
   from { transform: scale(1); }
   to { transform: scale(2); }
-`
+`;
 
 const rotateCW = keyframes`
   from {
@@ -565,7 +600,7 @@ const rotateCW = keyframes`
     transform: rotate(360deg);
     transform-origin: center center;
   }
-`
+`;
 const rotateACW = keyframes`
   from {
     transform: rotate(0deg);
@@ -575,7 +610,7 @@ const rotateACW = keyframes`
     transform: rotate(-360deg);
     transform-origin: center center;
   }
-`
+`;
 const rotateSlowDown = keyframes`
   0% { transform:rotateZ(0deg);  }
   5% { transform: rotateZ(1turn); }
@@ -583,8 +618,7 @@ const rotateSlowDown = keyframes`
   20% { transform: rotateZ(3turn); }
   40% { transform: rotateZ(4turn); }
   65%, 100% { transform: rotateZ(5turn); }
-`
-
+`;
 
 const popIn = keyframes`
   0% {
@@ -598,7 +632,7 @@ const popIn = keyframes`
   60% { transform: scale3d(1, 1, 1); }
   80% { transform: scale3d(1.03, 1.03, 1.03); }
   100% { transform: scale3d(1, 1, 1); }
-`
+`;
 const popOut = keyframes`
   0% { transform: scale3d(1, 1, 1); }
   60% {
@@ -609,12 +643,11 @@ const popOut = keyframes`
     opacity: 0;
     transform: scale3d(0.3, 0.3, 0.3);
   }
-`
+`;
 
-const typewriter = keyframes``
+const typewriter = keyframes``;
 
-const types = {
-
+const ElementType = {
   blur: blur,
   bounce: bounce,
   effect3D: effect3D,
@@ -626,19 +659,16 @@ const types = {
   shadow: shadow,
   spin: spin,
   swing: swing,
-
   fadeIn: fadeIn,
   fadeInFromLeft: fadeInFromLeft,
   fadeInFromRight: fadeInFromRight,
   fadeInFromTop: fadeInFromTop,
   fadeInFromBottom: fadeInFromBottom,
-
   fadeOut: fadeOut,
   fadeOutToLeft: fadeOutToLeft,
   fadeOutToRight: fadeOutToRight,
   fadeOutToTop: fadeOutToTop,
   fadeOutToBottom: fadeOutToBottom,
-
   flip: flip,
   flipIn: flipIn,
   flipOut: flipOut,
@@ -648,26 +678,19 @@ const types = {
   flipFromBottom: flipFromBottom,
   flipToBottom: flipToBottom,
   flipFromLeftToCenter: flipFromLeftToCenter,
-
   fold: fold,
   unfold: unfold,
-
   hangOnLeft: hangOnLeft,
   hangOnRight: hangOnRight,
-
   rotateSlowDown: rotateSlowDown,
   rotateCW: rotateCW,
   rotateACW: rotateACW,
-
-
   shakeMix: shakeMix,
   shakeHorizontal: shakeHorizontal,
   shakeVertical: shakeVertical,
-
   squeezeMix: squeezeMix,
   squeezeHorizontal: squeezeHorizontal,
   squeezeVertical: squeezeVertical,
-
   slideInFromLeft: slideInFromLeft,
   slideInFromRight: slideInFromRight,
   slideOutToLeft: slideOutToLeft,
@@ -676,28 +699,11 @@ const types = {
   slideInFromBottom: slideInFromBottom,
   slideOutToTop: slideOutToTop,
   slideOutToBottom: slideOutToBottom,
-
   zoomIn: zoomIn,
   zoomOut: zoomOut,
-
   popIn: popIn,
   popOut: popOut,
+  typewriter: typewriter,
+};
 
-  typewriter: typewriter
-}
-
-const StlyedElement = styled.div`
-  margin: 0;
-  padding: 0;
-  animation-name: ${props => types[props.type] || null};
-  animation-duration: ${props => props.duration || '1s'};
-  animation-timing-function: ${props => props.timing || 'ease'};
-  animation-delay: ${props => props.delay || '0s'};
-  animation-iteration-count: ${props => props.iteration || 'infinite'};
-  animation-direction: ${props => props.direction || 'alternate'};
-  animation-fill-mode: ${props => props.fillMode || 'forwards'};
-`
-
-export default MovingComponent
-
-
+export default MovingComponent;
