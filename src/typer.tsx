@@ -7,7 +7,7 @@ interface CursorProps {
 }
 
 const Typer: React.FC<TypewriterProps> = ({
-  heading = "",
+  staticText = "",
   dataText,
   cursorColor,
 }) => {
@@ -44,7 +44,7 @@ const Typer: React.FC<TypewriterProps> = ({
 
   return (
     <div>
-      {heading}&nbsp;
+      {staticText}&nbsp;
       <span>{text}</span>
       <Cursor cursorColor={cursorColor}></Cursor>
     </div>

@@ -20,7 +20,7 @@ type StyledTextProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export type TypewriterProps = {
   dataText: string[];
-  heading?: string;
+  staticText?: string;
   cursorColor?: string;
 };
 // animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
@@ -72,7 +72,7 @@ export const StyledText = ({
 export const Typewriter: React.FC<TypewriterProps> = (props) => {
   return (
     <Typer
-      heading={props.heading}
+      staticText={props.staticText}
       dataText={props.dataText}
       cursorColor={props.cursorColor}
     />
