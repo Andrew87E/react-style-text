@@ -38,12 +38,11 @@ jobs:
             --notes "" \
             --repo ${{ github.repository }} \
             --target ${{ github.sha }} \
-            ./dist/my-package.tgz
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Release Asset
         run: |
-          gh release upload ${{ steps.package_version.outputs.version }} ./dist/my-package.tgz
+          gh release upload ${{ steps.package_version.outputs.version }} ./react-style-text-${{ steps.package_version.outputs.version }}.tgz
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
