@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/Andrew87E/react-style-text"
   },
-  "main": "",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack --watch",
     "build": "npx tsc && webpack && npm pack",

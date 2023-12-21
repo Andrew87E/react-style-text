@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   module: {
     rules: [
       {
@@ -20,8 +20,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "./dist"),
-    filename: "myUnflappableComponent.js",
-    library: libraryName,
+    filename: "index.js",
+    library: "react-style-text",
     libraryTarget: "umd",
     publicPath: "/dist/",
     umdNamedDefine: true,
