@@ -53,9 +53,18 @@ type AnimationName = keyof typeof Animations;
  *
  */
 export const StyledText = ({ children, animationProps }: StyledTextProps) => {
-  return <StyledElement {...animationProps!}>{children}</StyledElement>;
+  return (
+    <StyledElement {...HTMLDivElement} {...animationProps!}>
+      {children}
+    </StyledElement>
+  );
 };
 
+/**
+ *
+ *
+ *
+ */
 export const Typewriter: React.FC<TypewriterProps> = (props) => {
   return (
     <Typer
