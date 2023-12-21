@@ -32,14 +32,14 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        run: |
+          gh release create ${{ steps.package_version.outputs.version }} \
+            --title "Release ${{ steps.package_version.outputs.version }}" \
+            --notes "" \
+            --repo ${{ github.repository }} \
+            --target ${{ github.sha }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          tag_name: ${{ steps.package_version.outputs.version }}
-          release_name: Release ${{ steps.package_version.outputs.version }}
-          draft: false
-          prerelease: false
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
