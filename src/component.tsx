@@ -45,7 +45,9 @@ const StyledElement = styled.div<AnimationProps>`
 
 type AnimationName = keyof typeof ElementType;
 
-const StyledText: React.FC<StyledTextProps | TypewriterProps> = (props) => {
+export const StyledText: React.FC<StyledTextProps | TypewriterProps> = (
+  props
+) => {
   if ("dataText" in props) {
     return (
       <Typer
@@ -715,5 +717,3 @@ const ElementType = {
   popOut: popOut,
   typewriter: typewriter,
 };
-
-export default StyledText;
