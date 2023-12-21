@@ -1,5 +1,7 @@
 # react-style-text
 
+[![Publish to npm](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml/badge.svg?branch=stable)](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml)
+
 React Component to show animated text and objects, built with [styled-components](https://www.styled-components.com/).
 
 The Component provides regular animation for common object and some animation effects especially for typography like letters and multi-line text.
