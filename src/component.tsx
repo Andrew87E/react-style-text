@@ -52,9 +52,13 @@ type AnimationName = keyof typeof Animations;
  *
  *
  */
-export const StyledText = ({ children, animationProps }: StyledTextProps) => {
+export const StyledText = ({
+  children,
+  animationProps,
+  ...props
+}: StyledTextProps) => {
   return (
-    <StyledElement {...HTMLDivElement} {...animationProps!}>
+    <StyledElement {...props} {...animationProps!}>
       {children}
     </StyledElement>
   );
