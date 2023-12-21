@@ -1,5 +1,5 @@
 {
-  "name": "react-styled-text",
+  "name": "react-text-styler",
   "homepage": "https://github.com/Andrew87E/react-styled-text",
   "version": "0.0.1",
   "description": "revival of react-moving-text with typescript",
