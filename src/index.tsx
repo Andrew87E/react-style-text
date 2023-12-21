@@ -1,3 +1,2 @@
-import StyledText from "./component";
-
-export default StyledText;
+export { StyledText } from "./component";
+export { Typewriter } from "./component";

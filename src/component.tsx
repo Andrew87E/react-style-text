@@ -3,64 +3,65 @@ import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
 type AnimationProps = {
+  animationname: AnimationName;
   duration?: string;
   timing?: string;
   delay?: string;
-  elementType?: AnimationName | null;
   iteration?: number;
   direction?: string;
   fillMode?: string;
 };
 
 type StyledTextProps = {
-  children?:
-    | JSX.Element
-    | JSX.Element[]
-    | string
-    | string[]
-    | number
-    | number[];
-  elementType?: AnimationName | null;
-  animationProps: AnimationProps;
+  children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
+  animationProps?: AnimationProps;
 };
 
-type TypewriterProps = StyledTextProps & {
+export type TypewriterProps = {
   dataText: string[];
   heading?: string;
   cursorColor?: string;
 };
+// animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
 
 const StyledElement = styled.div<AnimationProps>`
   margin: 0;
   padding: 0;
-  animation-name: ${(props) =>
-    props.elementType ? ElementType[props.elementType] : ElementType["spin"]};
-  animation-duration: ${(props) => props.duration || "1s"};
-  animation-timing-function: ${(props) => props.timing || "ease"};
-  animation-delay: ${(props) => props.delay || "0s"};
-  animation-iteration-count: ${(props) => props.iteration || "infinite"};
-  animation-direction: ${(props) => props.direction || "alternate"};
-  animation-fill-mode: ${(props) => props.fillMode || "forwards"};
+  animation-name: ${({ animationname }) =>
+    animationname ? Animations[animationname] : Animations["spin"]};
+  animation-duration: ${({ duration }) => duration || "1s"};
+  animation-timing-function: ${({ timing }) => timing || "ease"};
+  animation-delay: ${({ delay }) => delay || "0s"};
+  animation-iteration-count: ${({ iteration }) => iteration || "infinite"};
+  animation-direction: ${({ direction }) => direction || "alternate"};
+  animation-fill-mode: ${({ fillMode }) => fillMode || "forwards"};
 `;
 
-type AnimationName = keyof typeof ElementType;
+type AnimationName = keyof typeof Animations;
 
-const StyledText: React.FC<StyledTextProps | TypewriterProps> = (props) => {
-  if ("dataText" in props) {
-    return (
-      <Typer
-        heading={props.heading}
-        dataText={props.dataText}
-        cursorColor={props.cursorColor}
-      />
-    );
-  } else {
-    return (
-      <StyledElement elementType={props.elementType} {...props.animationProps}>
-        {props.children}
-      </StyledElement>
-    );
-  }
+/**
+ *
+ * @name StyledText
+ *
+ * @description
+ * This Component is used to apply animation to any text.
+ * Use animationname prop to apply animation.
+ *
+ *
+ *
+ */
+export const StyledText = ({ children, animationProps }: StyledTextProps) => {
+  return <StyledElement {...animationProps!}>{children}</StyledElement>;
+};
+
+export const Typewriter: React.FC<TypewriterProps> = (props) => {
+  return (
+    <Typer
+      heading={props.heading}
+      dataText={props.dataText}
+      cursorColor={props.cursorColor}
+    />
+  );
 };
 
 /* ========== basic animations ========== */
@@ -92,7 +93,6 @@ to {
   0 5px 10px rgba(0, 0, 0, .25)
 }
 `;
-
 const flash = keyframes`
   0%, 40%, 80% { opacity: 1; }
   20%, 60%, 100% { opacity: 0; }
@@ -154,7 +154,6 @@ const swing = keyframes`
     transform-origin: center top;
   }
 `;
-
 const fadeIn = keyframes`
   from { opacity: 0; }
   to { opacity: 1; }
@@ -187,7 +186,6 @@ const fadeInFromBottom = keyframes`
   }
   to { opacity: 1 }
 `;
-
 const fadeOut = keyframes`
   from { opacity: 1; }
   to { opacity: 0; }
@@ -220,7 +218,6 @@ const fadeOutToBottom = keyframes`
     transform: translateY(100%);
   }
 `;
-
 const hangOnLeft = keyframes`
   0% { transform-origin: left; }
   30% {
@@ -283,7 +280,6 @@ const hangOnRight = keyframes`
     transform-origin: right;
   }
 `;
-
 const squeezeMix = keyframes`
   0% { transform: scale(1, 1); }
   15% { transform: scale(0.95, 0.95); }
@@ -656,9 +652,7 @@ const popOut = keyframes`
   }
 `;
 
-const typewriter = keyframes``;
-
-const ElementType = {
+const Animations = {
   blur: blur,
   bounce: bounce,
   effect3D: effect3D,
@@ -714,7 +708,4 @@ const ElementType = {
   zoomOut: zoomOut,
   popIn: popIn,
   popOut: popOut,
-  typewriter: typewriter,
 };
-
-export default StyledText;

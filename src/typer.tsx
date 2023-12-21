@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-
-interface TyperProps {
-  heading?: string;
-  dataText: string[];
-  cursorColor?: string;
-}
+import { TypewriterProps } from "./component";
 
 interface CursorProps {
   cursorColor?: string;
 }
 
-const Typer: React.FC<TyperProps> = ({
+const Typer: React.FC<TypewriterProps> = ({
   heading = "",
   dataText,
   cursorColor,
