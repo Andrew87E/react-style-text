@@ -2,7 +2,11 @@
 
 [![Tests](https://github.com/Andrew87E/react-style-text/actions/workflows/test.yml/badge.svg)](https://github.com/Andrew87E/react-style-text/actions/workflows/test.yml)
 [![Release](https://github.com/Andrew87E/react-style-text/actions/workflows/release.yml/badge.svg)](https://github.com/Andrew87E/react-style-text/actions/workflows/release.yml)
-[![Publish to npm](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml/badge.svg?branch=stable)](https://github.com/Andrew87E/react-style-text/actions/workflows/publish.yml)
+[![npm version](https://badge.fury.io/js/react-style-text.svg)](https://badge.fury.io/js/react-style-text)
+
+<!-- [![npm](https://img.shields.io/npm/dt/react-style-text.svg)](https://www.npmjs.com/package/react-style-text) -->
+
+[![npm](https://img.shields.io/npm/l/react-style-text.svg)](https://www.npmjs.com/package/react-style-text)
 
 React Component to show animated text and objects, built with [styled-components](https://www.styled-components.com/).
 
@@ -30,18 +34,20 @@ To use react-style-text in your react project, wrap the content with a `StyledTe
 
 ```jsx
 import React from "react";
-import StyledText from "react-style-text";
+import { StyledText } from "react-style-text";
 
 const MyAnimatedTypo = () => {
   return (
     <StyledText
-      type="animation_type"
+    animationProps={{
+      animationname="animation_type"
       duration="1000ms"
       delay="0s"
       direction="normal"
       timing="ease"
       iteration="infinite"
       fillMode="none"
+    }}
     >
       Content...
     </StyledText>
@@ -51,15 +57,15 @@ const MyAnimatedTypo = () => {
 
 ### Available properties
 
-|  Property   | Corresponding Animation Property |     Data Type     | Default Value | Property Unit |
-| :---------: | :------------------------------: | :---------------: | :-----------: | :-----------: |
-|   `type`    |         `animation-name`         |     `String`      |    "blur"     |       -       |
-| `duration`  |       `animation-duration`       |     `String`      |     "1s"      |  `s` or `ms`  |
-|   `delay`   |        `animation-delay`         |     `String`      |     "0s"      |  `s` or `ms`  |
-| `direction` |      `animation-direction`       |     `String`      |  "alternate"  |       -       |
-|  `timing`   |   `animation-timing-function`    |     `String`      |    "ease"     |       -       |
-| `iteration` |   `animation-iteration-count`    | `Number` `String` |  "infinite"   |       -       |
-| `fillMode`  |      `animation-fill-mode`       |     `String`      |    "none"     |       -       |
+|    Property     | Corresponding Animation Property |     Data Type     | Default Value | Property Unit |
+| :-------------: | :------------------------------: | :---------------: | :-----------: | :-----------: |
+| `animationname` |         `animation-name`         |     `String`      |   "bounce"    |       -       |
+|   `duration`    |       `animation-duration`       |     `String`      |     "1s"      |  `s` or `ms`  |
+|     `delay`     |        `animation-delay`         |     `String`      |     "0s"      |  `s` or `ms`  |
+|   `direction`   |      `animation-direction`       |     `String`      |  "alternate"  |       -       |
+|    `timing`     |   `animation-timing-function`    |     `String`      |    "ease"     |       -       |
+|   `iteration`   |   `animation-iteration-count`    | `Number` `String` |  "infinite"   |       -       |
+|   `fillMode`    |      `animation-fill-mode`       |     `String`      |    "none"     |       -       |
 
 ### Available animations
 
@@ -104,7 +110,7 @@ A string array of animation names used to wrap the animations you want to chain.
 
 ```jsx
 import React, { useState } from "react";
-import StyledText from "react-style-text";
+import {StyledText} from "react-style-text";
 
 const AnimationsForChaining = [
   "swing",
@@ -125,13 +131,41 @@ const AnimationChain = () => {
   return (
     <StyledText
       onAnimationEnd={handleChainAnimation}
+      animationProps={{
       type={animationType}
       duration="1000ms"
       timing="linear"
       iteration={1}
+    }}
     >
       StyledText
     </StyledText>
   );
 };
 ```
+
+## Typewriter Animation
+
+A string array of animation names used to wrap the animations you want to chain.
+
+```jsx
+
+import React, { useState } from "react";
+import { Typewriter } from "react-style-text";
+
+const MyTypewriter = () => {
+  const [text, setText] = useState<string[]>(["Hello World!", "Hello React!"]);
+
+  return (
+    <Typewriter
+      dataText={text}
+      cursorColor="green"
+      heading="Example Text"
+    />
+  );
+};
+```
+
+## [License](https://github.com/Andrew87E/Horiseon-Marketing/blob/main/LICENSE)
+
+MIT © [Andrew Edwards](https://github.com/andrew87e)
