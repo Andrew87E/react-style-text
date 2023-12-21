@@ -1,32 +1,32 @@
-# react-text-styler
+# react-style-text
 
 React Component to show animated text and objects, built with [styled-components](https://www.styled-components.com/).
 
 The Component provides regular animation for common object and some animation effects especially for typography like letters and multi-line text.
 
-**View [Demo and Playground](https://yidaoj.github.io/react-text-styler/)**
+<!-- **View [Demo and Playground](https://yidaoj.github.io/react-style-text/)** -->
 
 ## Installation
 
 Install via npm:
 
 ```
-npm i react-text-styler
+npm i react-style-text
 ```
 
 Install via yarn:
 
 ```
-yarn add react-text-styler
+yarn add react-style-text
 ```
 
 ## Usage
 
-To use react-text-styler in your react project, wrap the content with a `StyledText` component and customize the animation with relevant properties.
+To use react-style-text in your react project, wrap the content with a `StyledText` component and customize the animation with relevant properties.
 
 ```jsx
 import React from "react";
-import StyledText from "react-text-styler";
+import StyledText from "react-style-text";
 
 const MyAnimatedTypo = () => {
   return (
@@ -100,7 +100,7 @@ A string array of animation names used to wrap the animations you want to chain.
 
 ```jsx
 import React, { useState } from "react";
-import StyledText from "react-text-styler";
+import StyledText from "react-style-text";
 
 const AnimationsForChaining = [
   "swing",
