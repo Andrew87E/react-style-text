@@ -3,13 +3,13 @@ import styled, { keyframes } from "styled-components";
 import { TypewriterProps } from "./component";
 
 interface CursorProps {
-  cursorColor?: string;
+  cursorcolor?: string;
 }
 
 const Typer: React.FC<TypewriterProps> = ({
-  staticText = "",
-  dataText,
-  cursorColor,
+  statictext = "",
+  datatext,
+  cursorcolor,
 }) => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -24,8 +24,8 @@ const Typer: React.FC<TypewriterProps> = ({
   }, [text, isDeleting]);
 
   const handleType = () => {
-    const i = loopNum % dataText.length;
-    const fullText = dataText[i];
+    const i = loopNum % datatext.length;
+    const fullText = datatext[i];
 
     setText(
       isDeleting
@@ -44,9 +44,9 @@ const Typer: React.FC<TypewriterProps> = ({
 
   return (
     <div>
-      {staticText}&nbsp;
+      {statictext}&nbsp;
       <span>{text}</span>
-      <Cursor cursorColor={cursorColor}></Cursor>
+      <Cursor cursorcolor={cursorcolor}></Cursor>
     </div>
   );
 };
@@ -61,6 +61,6 @@ const blink = keyframes`
 
 const Cursor = styled.span<CursorProps>`
   margin-left: 2px;
-  border-left: 3px solid ${(props) => props.cursorColor};
+  border-left: 3px solid ${(props) => props.cursorcolor};
   animation: ${blink} 0.7s steps(1) infinite;
 `;
