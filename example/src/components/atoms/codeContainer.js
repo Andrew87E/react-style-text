@@ -17,15 +17,14 @@ const CodeContainer = ({
   const objectCode = `
   <AnimatedComponent
     key={index}
-    animationProps={{
-      animationname: "${animationType}",
-      duration: "${duration}ms",
-      delay: "${interval}ms",
-      direction: "${direction}",
-      timing: "${timingFunction}",
-      iteration: ${iterationCount},
-      fillmode: "${fillmode}",
-    }}>
+    animationname="${animationType}"
+    duration="${duration}ms"
+    delay="${interval}ms"
+    direction="${direction}"
+    timing="${timingFunction}"
+    iteration=${iterationCount}
+    fillmode="${fillmode}"
+    >
     React-Style-Text
   </AnimatedComponent>
   `.trim();
@@ -36,26 +35,27 @@ const CodeContainer = ({
   Letters.map((item, index) =>
   <AnimatedComponent
     key={index}
-    animationProps={{
-      animationname: "${animationType}",
-      duration: "${duration}ms",
-      delay: "${interval}ms",
-      direction: "${direction}",
-      timing: "${timingFunction}",
-      iteration: ${iterationCount},
-      fillmode: "${fillmode}",
-    }}>
+    animationname="${animationType}"
+    duration="${duration}ms"
+    delay="${interval}ms"
+    direction="${direction}"
+    timing="${timingFunction}"
+    iteration=${iterationCount}
+    fillmode="${fillmode}"
+    >
   {item}
   </AnimatedComponent>)
     `.trim();
 
-  const typewriterCode = `<AnimatedComponent type="typewriter"
-    dataText={[
+  const typewriterCode = `<Typewriter
+    datatext={[
     'Sushi',
     'Pizza',
     'Brötchen',
-    'Salat'
-  ]} />`.trim();
+    'Salat',
+  ]}
+  cursorcolor="green"
+  />`.trim();
 
   return (
     <Container>

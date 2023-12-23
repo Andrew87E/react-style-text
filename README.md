@@ -30,16 +30,15 @@ yarn add react-style-text
 
 ## Usage
 
-To use react-style-text in your react project, wrap the content with a `AnimatedComponent` component and customize the animation with relevant properties.
+To use react-style-text in your react project, wrap the content with a `AnimatedComponent` or `TypeWriter` component and customize the animation with relevant properties.
 
 ```jsx
 import React from "react";
-import { AnimatedComponent } from "react-style-text";
+import { AnimatedComponent, Typewriter } from "react-style-text";
 
-const MyAnimatedTypo = () => {
+export const MyAnimatedTypo = () => {
   return (
     <AnimatedComponent
-    animationProps={{
       animationname="animation_type"
       duration="1000ms"
       delay="0s"
@@ -47,10 +46,19 @@ const MyAnimatedTypo = () => {
       timing="ease"
       iteration="infinite"
       fillMode="none"
-    }}
     >
       Content...
     </AnimatedComponent>
+  );
+};
+
+export const MyTypewriter = () => {
+  return (
+    <Typewriter
+      datatext={["Hello World!", "Hello React!"]}
+      cursorcolor="green"
+      statictext="Example Text"
+    />
   );
 };
 ```
@@ -127,15 +135,14 @@ const AnimationChain = () => {
   return (
     <AnimatedComponent
       onAnimationEnd={handleChainAnimation}
-      animationProps={{
-      type={animationType}
+      animationname={animationType}
       duration="1000ms"
       timing="linear"
       iteration={1}
     }}
     >
       AnimatedComponent
-    </AnimatedComponent>
+    </AnimatedComponen
   );
 };
 ```
@@ -155,8 +162,8 @@ const MyTypewriter = () => {
   return (
     <Typewriter
       dataText={text}
-      cursorColor="green"
-      heading="Example Text"
+      cursorcolor="green"
+      statictext="Example Text"
     />
   );
 };
