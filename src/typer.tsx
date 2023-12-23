@@ -9,6 +9,7 @@ export type TypewriterProps = {
   datatext: string[];
   statictext?: string;
   cursorcolor?: string;
+  typingspeed?: number;
 };
 
 /**
@@ -20,9 +21,11 @@ export type TypewriterProps = {
  *
  * @param datatext - An array of strings to be typed out.
  *
- * @param statictext - A string that is displayed before the typewriter effect.
+ * @param statictext - A string that is displayed before the typewriter effect. Default is an empty string.
  *
  * @param cursorcolor - The color of the cursor.
+ *
+ * @param typingspeed - The speed at which the text is typed out in milliseconds. Default is 150ms
  *
  * @example
  * import { Typewriter } from "react-typewriter-effect";
@@ -33,6 +36,7 @@ export type TypewriterProps = {
  * datatext={["Hello World!", "Hello World Again!"]}
  * statictext="This is a "
  * cursorcolor="red"
+ * typingspeed={150}
  * />
  * );
  * };
@@ -45,12 +49,13 @@ export const Typewriter: React.FC<TypewriterProps> = (props) => {
       statictext={props.statictext}
       datatext={props.datatext}
       cursorcolor={props.cursorcolor}
+      typingspeed={props.typingspeed || 150}
     />
   );
 };
 
 const Typer: React.FC<TypewriterProps> = ({
-  statictext = "",
+  statictext,
   datatext,
   cursorcolor,
 }) => {

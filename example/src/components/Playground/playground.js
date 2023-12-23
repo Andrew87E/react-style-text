@@ -22,7 +22,7 @@ const borderColor = "#000";
 const Playground = () => {
   const [counter, setCounter] = React.useState(0);
   const [animationObject, setAnimationObject] = React.useState("object");
-  const [animationType, setAnimationType] = React.useState("fadeIn");
+  const [animationType, setAnimationType] = React.useState("slideInFromRight");
   const [isIterationDisabled, setIsIterationDisabled] = React.useState(false);
   const [duration, setDuration] = React.useState(1000);
   const [delay, setDelay] = React.useState(0);
@@ -31,8 +31,7 @@ const Playground = () => {
   const [timingFunction, setTimingFunction] = React.useState("ease");
   const [direction, setDirection] = React.useState("normal");
   const [fillmode, setFillMode] = React.useState("none");
-  const [initialAnimationFinished, setInitialAnimationFinished] =
-    React.useState(false);
+  const [initialAnimationFinished, setInitilaAnimation] = React.useState(false);
   const [secondaryAnimationFinished, setSecondaryAnimationFinished] =
     React.useState(false);
 
@@ -45,6 +44,11 @@ const Playground = () => {
     }
   };
 
+  const setInitialAnimationFinished = (value) => {
+    setAnimationType("blur");
+    setInitilaAnimation(value);
+  };
+
   const handleSelectType = (event) => {
     setAnimationType(event.target.value);
   };
@@ -55,21 +59,17 @@ const Playground = () => {
 
   return (
     <PlaygroundContainer>
-      <AnimatedComponent
-        onAnimationEnd={() => setInitialAnimationFinished(true)}
-        animationProps={{
-          animationname: "fadeInFromLeft",
-          duration: "1000ms",
-          delay: "0ms",
-          direction: "normal",
-          timing: "ease-in-out",
-          iteration: "1",
-          fillmode: "none",
-        }}
-      >
-        <FormContainer className="playground_form">
-          {/* when initialAnimationFinished is true we want to play this animation */}
-
+      <FormContainer className="playground_form">
+        <AnimatedComponent
+          onAnimationEnd={() => setInitialAnimationFinished(true)}
+          animationname="fadeInFromLeft"
+          duration="1000ms"
+          delay="0ms"
+          direction="normal"
+          timing="ease-in-out"
+          iteration="1"
+          fillmode="none"
+        >
           <StyledForm>
             <Select
               items={["object", "letters", "multiline"]}
@@ -143,15 +143,13 @@ const Playground = () => {
           {initialAnimationFinished && (
             <AnimatedComponent
               onAnimationEnd={() => setSecondaryAnimationFinished(true)}
-              animationProps={{
-                animationname: "unfold",
-                duration: "1000ms",
-                delay: "0ms",
-                direction: "normal",
-                timing: "ease-in-out",
-                iteration: "1",
-                fillmode: "none",
-              }}
+              animationname="unfold"
+              duration="1000ms"
+              delay="0ms"
+              direction="normal"
+              timing="ease-in-out"
+              iteration="1"
+              fillmode="none"
             >
               <div style={{ display: "flex" }}>
                 {secondaryAnimationFinished &&
@@ -159,15 +157,13 @@ const Playground = () => {
                     <AnimatedComponent
                       key={index}
                       style={{ cursor: "pointer", color: "#fff" }}
-                      animationProps={{
-                        animationname: "fadeIn",
-                        duration: "1000ms",
-                        delay: `${index * 10}ms`,
-                        direction: "normal",
-                        timing: "linear",
-                        iteration: 1,
-                        fillmode: "forwards",
-                      }}
+                      animationname="fadeIn"
+                      duration="1000ms"
+                      delay={`${index * 10}ms`}
+                      direction="normal"
+                      timing="linear"
+                      iteration={1}
+                      fillmode="forwards"
                     >
                       {letter}
                     </AnimatedComponent>
@@ -186,23 +182,21 @@ const Playground = () => {
               />
             </AnimatedComponent>
           )}
-        </FormContainer>
-      </AnimatedComponent>
+        </AnimatedComponent>
+      </FormContainer>
 
       <ResultContainer className="resultContainer">
         <ResultField>
           {animationObject === "object" && (
             <AnimatedComponent
               key={counter}
-              animationProps={{
-                animationname: animationType,
-                duration: `${duration}ms`,
-                delay: `${interval}ms`,
-                direction: direction,
-                timing: timingFunction,
-                iteration: iterationCount,
-                fillmode: fillmode,
-              }}
+              animationname={animationType}
+              duration={`${duration}ms`}
+              delay={`${interval}ms`}
+              direction={direction}
+              timing={timingFunction}
+              iteration={iterationCount}
+              fillmode={fillmode}
             >
               {Text}
             </AnimatedComponent>
@@ -213,15 +207,13 @@ const Playground = () => {
               {Letters.map((item, index) => (
                 <AnimatedComponent
                   key={index}
-                  animationProps={{
-                    animationname: animationType,
-                    duration: `${duration}ms`,
-                    delay: `${index * interval}ms`,
-                    direction: direction,
-                    timing: timingFunction,
-                    iteration: iterationCount,
-                    fillmode: fillmode,
-                  }}
+                  animationname={animationType}
+                  duration={`${duration}ms`}
+                  delay={`${index * interval}ms`}
+                  direction={direction}
+                  timing={timingFunction}
+                  iteration={iterationCount}
+                  fillmode={fillmode}
                 >
                   {item}
                 </AnimatedComponent>
@@ -241,21 +233,19 @@ const Playground = () => {
 
         <EffectController>
           <AnimatedComponent
-            animationProps={{
-              animationname: "slideInFromTop",
-              duration: "3000ms",
-              delay: "0ms",
-              direction: "normal",
-              timing: "ease-in-out",
-              iteration: "1",
-              fillmode: "none",
-            }}
+            animationname="slideInFromTop"
+            duration="3000ms"
+            delay="0ms"
+            direction="normal"
+            timing="ease-in-out"
+            iteration="1"
+            fillmode="none"
           >
             <Select
               hasOptGroup={animationObject !== "multiline"}
               items={
                 animationObject === "multiline"
-                  ? ["typewriter"]
+                  ? ["Typewriter"]
                   : AnimationTypes
               }
               width="400px"
@@ -266,15 +256,13 @@ const Playground = () => {
           </AnimatedComponent>
           {secondaryAnimationFinished ? (
             <AnimatedComponent
-              animationProps={{
-                animationname: "rotateSlowDown",
-                duration: "3000ms",
-                delay: "0ms",
-                direction: "normal",
-                timing: "ease-in-out",
-                iteration: "1",
-                fillmode: "none",
-              }}
+              animationname="rotateSlowDown"
+              duration="3000ms"
+              delay="0ms"
+              direction="normal"
+              timing="ease-in-out"
+              iteration="1"
+              fillmode="none"
             >
               <RoundButton title={"replay animation"} onClick={handleReplay}>
                 <FontAwesomeIcon icon={faRedo} />
@@ -291,7 +279,7 @@ const Playground = () => {
 
 const PlaygroundContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction=column;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
@@ -303,7 +291,7 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction=column;
   width: 400px;
   min-width: 300px;
   height: calc(80vh);
@@ -327,6 +315,7 @@ const RowContainer = styled.div`
 `;
 const ResultContainer = styled.div`
   display: flex;
+
   height: 100%;
   width: calc(100vw - 400px);
   min-width: 600px;
@@ -340,6 +329,8 @@ const ResultField = styled.div`
   align-items: center;
   width: 80%;
   height: 500px;
+  margin-left: 15rem;
+  margin-right 15rem;
   background-color: initial;
   font-size: calc(0.6rem + 4vmax);
   font-weight: 100;

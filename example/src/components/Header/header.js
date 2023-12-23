@@ -23,13 +23,13 @@ const Header = () => {
       </ForkRibbon>
       <StyledH1>
         <AnimatedComponent
-            animationname: "fadeInFromTop",
-            duration: "1000ms",
-            delay: "0ms",
-            direction: "normal",
-            timing: "ease-in-out",
-            iteration: "1",
-            fillmode: "none",
+          animationname="fadeInFromTop"
+          duration="1000ms"
+          delay="0ms"
+          direction="normal"
+          timing="ease-in-out"
+          iteration="1"
+          fillmode="none"
         >
           <StyledLink color="#fff" noTransition={true} to="/">
             React-Style-Text
@@ -38,15 +38,13 @@ const Header = () => {
       </StyledH1>
 
       <AnimatedComponent
-        animationProps={{
-          animationname: "fadeIn",
-          duration: "1000ms",
-          delay: "0ms",
-          direction: "normal",
-          timing: "ease-in-out",
-          iteration: "1",
-          fillmode: "none",
-        }}
+        animationname="fadeIn"
+        duration="1000ms"
+        delay="0ms"
+        direction="normal"
+        timing="ease-in-out"
+        iteration="1"
+        fillmode="none"
       >
         <StyledSubHeader>
           A library for animated texts built with React and CSS Animation.
@@ -63,13 +61,13 @@ const Header = () => {
         </StyledSubHeader>
       </AnimatedComponent>
       <AnimatedComponent
-          animationname: "fadeInFromBottom",
-          duration: "1000ms",
-          delay: "0ms",
-          direction: "normal",
-          timing: "ease-in-out",
-          iteration: "1",
-          fillmode: "none",
+        animationname="fadeInFromBottom"
+        duration="1000ms"
+        delay="0ms"
+        direction="normal"
+        timing="ease-in-out"
+        iteration="1"
+        fillmode="none"
       >
         <InstallInfoBar>
           <StyledCode
