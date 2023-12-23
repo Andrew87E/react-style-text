@@ -1,13 +1,13 @@
 const colors = {
   primary: '#5cbd6b',
-  secondary: '#b3e5fc',
-  middle: '#1976d2',
+  secondary: '#ebebeb',
+  middle: '#ebebeb',
   green: '#51C70F',
-  white: '#FFF',
+  white: '#212121',
   black: '#212121',
-  lightgray: '#EEE',
+  lightgray: '#000',
   gray: '#B9B9B9',
-  darkgray: '#656565'
+  darkgray: '#ebebeb'
 }
 
 export const theme = {

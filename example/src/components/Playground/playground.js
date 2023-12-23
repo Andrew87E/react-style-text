@@ -5,13 +5,25 @@ import { faRedo, faCode } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import Select from '../atoms/selectMenu'
 import RoundButton from '../atoms/roundButton'
+import Modal from '../atoms/modal'
 import RangeController from '../atoms/rangeController'
 import Checkbox from '../atoms/checkbox'
 import CodeContainer from '../atoms/codeContainer'
+import CheckboxButton from '../atoms/checkboxButton'
+import SelectPanel from '../atoms/selectPanel'
 import { TimingFunctionItems, DirectionItems, FillModeItems, AnimationTypes } from './static'
 
 const Text = "react-style-text"
 const Letters = Text.split("")
+const borderColor = "#000"
+const AnimationOptions = {
+  duration: "",
+  delay: "",
+  iteration: "",
+  timingFunction: "ease",
+  direction: "normal",
+  fillMode: "none"
+}
 
 const Playground = () => {
 
@@ -27,6 +39,7 @@ const Playground = () => {
   const [ timingFunction, setTimingFunction ] = React.useState("ease")
   const [ direction, setDirection ] = React.useState("normal")
   const [ fillMode, setFillMode ] = React.useState("none")
+  
 
   const handleIterationDisable = () => {
     setIsIterationDisabled(!isIterationDisabled)
@@ -132,16 +145,14 @@ const Playground = () => {
               <StyledText
                 key={counter}
                 animationProps={{
-                  animationname: animationType,
-                  duration: `${duration}ms`,
-                  delay: `${delay}s`,
-                  direction: direction,
-                  timing: timingFunction,
-                  iteration: iterationCount,
-                  fillMode: fillMode,
-                  byLetter: false,
-                }}
-                
+                    animationname: animationType,
+                    duration: `${duration}ms`,
+                    delay: `${interval}ms`,
+                    direction: direction,
+                    timing: timingFunction,
+                    iteration: iterationCount,
+                    fillMode: fillMode,
+                  }}
               >{Text}
               </StyledText>
           }
@@ -150,22 +161,21 @@ const Playground = () => {
             animationObject === "letters" &&
             <LettersContainer key={counter}>
                 {
-      Letters.map((item, index) => (
-          <StyledText
-          key={index}
-          animationProps={{
-            animationname: animationType,
-            duration: `${duration}ms`,
-            delay: `${delay}s`,
-            direction: direction,
-            timing: timingFunction,
-            iteration: iterationCount,
-            fillMode: fillMode,
-            byLetter: true,
-        }}>
-          {item}
-        </StyledText>
-      ))
+                  Letters.map((item, index) =>
+                  <StyledText
+                  key={index}
+                  animationProps={{
+                    animationname: animationType,
+                    duration: `${duration}ms`,
+                    delay: `${index * interval}ms`,
+                    direction: direction,
+                    timing: timingFunction,
+                    iteration: iterationCount,
+                    fillMode: fillMode,
+                  }}
+                    >
+                    {item}
+                  </StyledText>)
                 }
               </LettersContainer>
           }
@@ -173,13 +183,15 @@ const Playground = () => {
           {
             animationObject === "multiline" &&
             <Typewriter
-              datatext={[
+              key={counter}
+              heading='Eat what you love:'
+              dataText={[
                 'Sushi',
                 'Pizza',
                 'Brötchen',
                 'Salat'
               ]}
-              cursorcolor="#5cbd6b"
+              cursorColor="#2196f3"
             />
           }
 
@@ -213,6 +225,7 @@ const PlaygroundContainer = styled.div`
   width: 100vw;
   height: calc(100vh - 230px);
   padding: 0px 100px;
+  background: radial-gradient(at center top, #323234, #01030D);
 `
 const FormContainer = styled.div`
   display: flex;
@@ -255,6 +268,31 @@ const ResultField = styled.div`
   font-weight: 100;
   letter-spacing: -2;
   color: ${props => props.theme.colors.primary};
+  text-border: 1px solid ${props => props.theme.colors.primary};
+  text-shadow: 1px 1px 0 ${borderColor},
+    -1px 1px 0 ${borderColor},
+    1px -1px 0 ${borderColor},
+    -1px -1px 0 ${borderColor},
+    0px 1px 0 ${borderColor},
+    0px -1px 0 ${borderColor},
+    -1px 0px 0 ${borderColor},
+    1px 0px 0 ${borderColor},
+    2px 2px 0 ${borderColor},
+    -2px 2px 0 ${borderColor},
+    2px -2px 0 ${borderColor},
+    -2px -2px 0 ${borderColor},
+    0px 2px 0 ${borderColor},
+    0px -2px 0 ${borderColor},
+    -2px 0px 0 ${borderColor},
+    2px 0px 0 ${borderColor},
+    1px 2px 0 ${borderColor},
+    -1px 2px 0 ${borderColor},
+    1px -2px 0 ${borderColor},
+    -1px -2px 0 ${borderColor},
+    2px 1px 0 ${borderColor},
+    -2px 1px 0 ${borderColor},
+    2px -1px 0 ${borderColor},
+    -2px -1px 0 ${borderColor};
 `
 const LettersContainer = styled.div`
   width: 100%;
@@ -262,6 +300,7 @@ const LettersContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
 `
 
 const EffectController = styled.div`

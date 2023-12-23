@@ -13,10 +13,10 @@ type AnimationProps = {
   fillMode?: string;
 };
 
-type StyledTextProps = React.HTMLAttributes<HTMLDivElement> & {
+interface StyledTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
   animationProps?: AnimationProps;
-};
+}
 
 export type TypewriterProps = {
   datatext: string[];

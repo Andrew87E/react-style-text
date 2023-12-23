@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components'
 import StyledLink from '../atoms/link'
 import ExternalLink from '../atoms/externalLink'
 
 const Header = () => {
+  const textAreaRef = useRef(null);
   return (
     <NavBar>
       <ForkRibbon href="https://github.com/andrew87e/react-style-text" target="_blank">
@@ -29,7 +30,7 @@ const Header = () => {
         </LinkGroupContainer>
       </StyledSubHeader>
       <InstallInfoBar>
-        <code>npm i react-style-text</code>
+        <code onClick={() => {navigator.clipboard.writeText(textAreaRef.current.innerText); swal("Copied!", "Code copied to clipboard!", "success", {button: "Aww yiss!"}) }} ref={textAreaRef}>npm i react-style-text</code>
       </InstallInfoBar>
     </NavBar>
   )
@@ -43,7 +44,9 @@ const NavBar = styled.div`
   width: 100vw;
   height: 190px;
   padding: 20px 100px;
-  background-color: ${props => props.theme.colors.primary};
+  // background-color: ${props => props.theme.colors.primary};
+  background: radial-gradient(at center bottom, #323234, #01030D)
+
 `
 
 const ForkRibbon = styled.a`
