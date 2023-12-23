@@ -67,7 +67,7 @@ export const MyTypewriter = () => {
 
 |    Property     | Corresponding Animation Property |     Data Type     | Default Value | Property Unit |
 | :-------------: | :------------------------------: | :---------------: | :-----------: | :-----------: |
-| `animationname` |         `animation-name`         |     `String`      |   "bounce"    |       -       |
+| `animationname` |         `animation-name`         |     `String`      |    "blur"     |       -       |
 |   `duration`    |       `animation-duration`       |     `String`      |     "1s"      |  `s` or `ms`  |
 |     `delay`     |        `animation-delay`         |     `String`      |     "0s"      |  `s` or `ms`  |
 |   `direction`   |      `animation-direction`       |     `String`      |  "alternate"  |       -       |
@@ -139,7 +139,6 @@ const AnimationChain = () => {
       duration="1000ms"
       timing="linear"
       iteration={1}
-    }}
     >
       AnimatedComponent
     </AnimatedComponen
