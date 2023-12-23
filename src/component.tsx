@@ -6,12 +6,17 @@ interface AnimationProps {
   animationname: AnimationName;
   byletter?: boolean;
   duration?: string;
-  timing?: string;
+  timing?: timing;
   delay?: string;
-  iteration?: number;
-  direction?: string;
-  fillmode?: string;
+  iteration?: iteration;
+  direction?: direction;
+  fillmode?: fillmode;
 }
+
+type direction = "normal" | "reverse" | "alternate" | "alternate-reverse";
+type fillmode = "none" | "forwards" | "backwards" | "both";
+type iteration = "infinite" | number;
+type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
 
 interface StyledTextProps extends AnimationProps {
   children:

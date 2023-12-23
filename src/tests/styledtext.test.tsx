@@ -10,7 +10,16 @@ import { StyledText } from "../index";
 describe("StyledText", () => {
   test("renders correctly", async () => {
     render(
-      <StyledText animationProps={{ animationname: "bounce" }}>
+      <StyledText
+        animationname="bounce"
+        direction="normal"
+        fillmode="backwards"
+        duration="1s"
+        delay="0s"
+        iteration="infinite"
+        timing="ease"
+        
+      >
         Test DataText
       </StyledText>
     );
