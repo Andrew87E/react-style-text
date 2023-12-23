@@ -10,7 +10,7 @@ const CodeContainer = ({
   direction,
   timingFunction,
   iterationCount,
-  fillMode,
+  fillmode,
   interval
 }) => {
   const textAreaRef = useRef(null);
@@ -24,7 +24,7 @@ const CodeContainer = ({
       direction: "${direction}",
       timing: "${timingFunction}",
       iteration: ${iterationCount},
-      fillMode: "${fillMode}",
+      fillmode: "${fillmode}",
     }}>
     React-Style-Text
   </StyledText>
@@ -43,7 +43,7 @@ const CodeContainer = ({
       direction: "${direction}",
       timing: "${timingFunction}",
       iteration: ${iterationCount},
-      fillMode: "${fillMode}",
+      fillmode: "${fillmode}",
     }}>
   {item}
   </StyledText>)

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
-interface AnimationProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AnimationProps {
   animationname: AnimationName;
   byletter?: boolean;
   duration?: string;
@@ -13,8 +13,15 @@ interface AnimationProps extends React.HTMLAttributes<HTMLDivElement> {
   fillmode?: string;
 }
 
-interface StyledTextProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
+interface StyledTextProps {
+  children:
+    | JSX.Element
+    | JSX.Element[]
+    | ReactNode
+    | string
+    | string[]
+    | number
+    | number[];
   animationProps?: AnimationProps;
 }
 
@@ -52,11 +59,9 @@ type AnimationName = keyof typeof Animations;
  *
  *
  */
-export const StyledText = ({
-  children,
-  animationProps,
-  ...props
-}: StyledTextProps) => {
+export const StyledText: FunctionComponent<
+  PropsWithChildren<StyledTextProps>
+> = ({ children, animationProps, ...props }) => {
   return (
     <StyledElement {...props} {...animationProps!}>
       {children}

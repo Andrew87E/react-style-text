@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { StyledText } from 'react-style-text'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay, faCode } from '@fortawesome/free-solid-svg-icons'
-import SelectPanel from '../atoms/selectPanel'
-import RoundButton from '../atoms/roundButton'
-import Modal from '../atoms/modal'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { StyledText } from "react-style-text";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faCode } from "@fortawesome/free-solid-svg-icons";
+import SelectPanel from "../atoms/selectPanel";
+import RoundButton from "../atoms/roundButton";
+import Modal from "../atoms/modal";
 
 const AnimationTypes = [
   "blur",
@@ -71,23 +71,22 @@ const AnimationTypes = [
 
   "zoomIn",
   "zoomOut",
-]
+];
 
 const ExamplePage = ({}) => {
-
-  const [ selectedItems, setSelectedItems] = React.useState([])
-  const [ animationType, setAnimationType ] = useState(selectedItems[0])
-  const [ counter, setCounter ] = useState(0)
-  const [ isModalOpen, setIsModalOpen ] = React.useState(false)
+  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [animationType, setAnimationType] = useState(selectedItems[0]);
+  const [counter, setCounter] = useState(0);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const getModalContent = (selectedItems) => {
-    let itemsText = ""
+    let itemsText = "";
 
     selectedItems.forEach((element, index) => {
-      index === selectedItems.length - 1 ?
-      itemsText = itemsText + `"${element}"` :
-      itemsText = itemsText + `"${element}", `
-    })
+      index === selectedItems.length - 1
+        ? (itemsText = itemsText + `"${element}"`)
+        : (itemsText = itemsText + `"${element}", `);
+    });
 
     return `
 import React, { useState } from 'react'
@@ -111,44 +110,43 @@ const AnimationChain = () => {
       type={animationType}
       duration="1000ms"
       timing="linear"
-      fillMode="forwards"
+      fillmode="forwards"
       iteration={1}>
       react-style-text
     </StyledText>
   )
 }
-`
-  }
+`;
+  };
 
   const handleChainAnimation = () => {
-    setCounter(counter + 1)
-    setAnimationType(selectedItems[counter+1])
-    getModalContent(selectedItems)
-  }
+    setCounter(counter + 1);
+    setAnimationType(selectedItems[counter + 1]);
+    getModalContent(selectedItems);
+  };
 
   const handlePlayAnimationChain = () => {
-    setCounter(0)
-    setAnimationType(selectedItems[0])
-  }
+    setCounter(0);
+    setAnimationType(selectedItems[0]);
+  };
 
   const handleModalOpen = () => {
-    setIsModalOpen(true)
-  }
+    setIsModalOpen(true);
+  };
 
   const handleModalClose = () => {
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
 
   return (
     <ExampleContainer>
       <div>
-        <ExampleText>
-          Choose animations for chaining:
-        </ExampleText>
+        <ExampleText>Choose animations for chaining:</ExampleText>
         <SelectPanel
           items={AnimationTypes}
           onSelectItem={setSelectedItems}
-          selectedItems={selectedItems} />
+          selectedItems={selectedItems}
+        />
       </div>
       <ResultContainer className="resultContainer">
         <ResultField>
@@ -157,33 +155,40 @@ const AnimationChain = () => {
             type={animationType}
             duration="1000ms"
             timing="linear"
-            fillMode="forwards"
-            iteration={1}>
+            fillmode="forwards"
+            iteration={1}
+          >
             react-style-text
           </StyledText>
         </ResultField>
         <ButtonGroupContainer>
-            <RoundButton
-              title={"play chained animation"}
-              margin="0px 10px"
-              onClick={handlePlayAnimationChain}
-              disabled={selectedItems.length === 0} >
-              <FontAwesomeIcon icon={faPlay} />
-            </RoundButton>
-            <RoundButton
-              title={"show code"}
-              margin="0px 10px"
-              onClick={handleModalOpen}
-              disabled={selectedItems.length === 0} >
-              <FontAwesomeIcon icon={faCode} />
-            </RoundButton>
+          <RoundButton
+            title={"play chained animation"}
+            margin="0px 10px"
+            onClick={handlePlayAnimationChain}
+            disabled={selectedItems.length === 0}
+          >
+            <FontAwesomeIcon icon={faPlay} />
+          </RoundButton>
+          <RoundButton
+            title={"show code"}
+            margin="0px 10px"
+            onClick={handleModalOpen}
+            disabled={selectedItems.length === 0}
+          >
+            <FontAwesomeIcon icon={faCode} />
+          </RoundButton>
         </ButtonGroupContainer>
       </ResultContainer>
 
-      <Modal isOpen={isModalOpen} onCloseModal={handleModalClose} content={getModalContent(selectedItems).trim()}/>
+      <Modal
+        isOpen={isModalOpen}
+        onCloseModal={handleModalClose}
+        content={getModalContent(selectedItems).trim()}
+      />
     </ExampleContainer>
-  )
-}
+  );
+};
 
 const ExampleContainer = styled.div`
   display: flex;
@@ -193,25 +198,25 @@ const ExampleContainer = styled.div`
   width: 100vw;
   height: calc(100vh - 230px);
   padding: 20px 100px;
-`
+`;
 
 const ExampleText = styled.div`
   display: block;
   width: 100%;
   margin: 20px 0px;
   font-size: 1.5rem;
-  color: ${props => props.theme.colors.middle};
-`
+  color: ${(props) => props.theme.colors.middle};
+`;
 
 const ResultContainer = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   min-width: 600px;
   min-height: 150px;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-`
+`;
 const ResultField = styled.div`
   display: flex;
   justify-content: center;
@@ -221,13 +226,13 @@ const ResultField = styled.div`
   font-size: calc(1rem + 4vmax);
   font-weight: 100;
   letter-spacing: -2;
-  color: ${props => props.theme.colors.primary};
-`
+  color: ${(props) => props.theme.colors.primary};
+`;
 
 const ButtonGroupContainer = styled.div`
   position: absolute;
   bottom: 60px;
   right: 100px;
-`
+`;
 
-export default ExamplePage
+export default ExamplePage;

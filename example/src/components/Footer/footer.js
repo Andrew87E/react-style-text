@@ -9,7 +9,6 @@ const Footer = () => {
       Made with
       <StyledText
         style={{ margin: "0px 10px", color: "red" }}
-        onAnimationEnd={() => console.log("animation ended")}
         animationProps={{
           animationname: "spin",
           duration: "2000ms",
@@ -17,7 +16,7 @@ const Footer = () => {
           direction: "normal",
           timing: "linear",
           iteration: "infinite",
-          fillMode: "none",
+          fillmode: "none",
         }}
       >
         &nbsp;❤&nbsp;

@@ -22,7 +22,7 @@ const AnimationOptions = {
   iteration: "",
   timingFunction: "ease",
   direction: "normal",
-  fillMode: "none"
+  fillmode: "none"
 }
 
 const Playground = () => {
@@ -38,7 +38,7 @@ const Playground = () => {
   const [ iterationCount, setIterationCount ] = React.useState(5)
   const [ timingFunction, setTimingFunction ] = React.useState("ease")
   const [ direction, setDirection ] = React.useState("normal")
-  const [ fillMode, setFillMode ] = React.useState("none")
+  const [ fillmode, setFillMode ] = React.useState("none")
   
 
   const handleIterationDisable = () => {
@@ -130,7 +130,7 @@ const Playground = () => {
           direction={direction}
           timingFunction={timingFunction}
           iterationCount={iterationCount}
-          fillMode={fillMode}
+          fillmode={fillmode}
           interval={interval}
         />
 
@@ -151,7 +151,7 @@ const Playground = () => {
                     direction: direction,
                     timing: timingFunction,
                     iteration: iterationCount,
-                    fillMode: fillMode,
+                    fillmode: fillmode,
                   }}
               >{Text}
               </StyledText>
@@ -171,7 +171,7 @@ const Playground = () => {
                     direction: direction,
                     timing: timingFunction,
                     iteration: iterationCount,
-                    fillMode: fillMode,
+                    fillmode: fillmode,
                   }}
                     >
                     {item}
