@@ -13,6 +13,13 @@ module.exports = {
       {test : /\.css$/, use:['style-loader', 'css-loader']}
     ]
   },
+  resolve: {
+    fallback: {
+      "stream": require.resolve("stream-browserify"),
+      "buffer": require.resolve("buffer/")
+    },
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+  },
   mode:'development',
   plugins : [
     new HtmlWebpackPlugin ({

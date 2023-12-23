@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import posed, { PoseGroup } from 'react-pose'
+import { AnimatePresence, motion } from 'framer-motion'
 import CheckboxButton from './checkboxButton'
 
 const SelectPanel = ({ items, onSelectItem }) => {
@@ -42,8 +42,14 @@ const SelectPanel = ({ items, onSelectItem }) => {
 
   return (
     <PanelContainer>
-      <ItemsContainer>
-        <PoseGroup>
+      <ItemsContainer
+      layout
+      trasition={{
+          duration: 0.3,
+          ease: [0.42, 0, 0.58, 1] 
+      }}
+      >
+        <AnimatePresence>
           {!!allItemsWithCheckState &&
             allItemsWithCheckState.map((item, index) => (
               <ItemContainer key={index}>
@@ -56,7 +62,7 @@ const SelectPanel = ({ items, onSelectItem }) => {
                 />
               </ItemContainer>
             ))}
-        </PoseGroup>
+        </AnimatePresence>
       </ItemsContainer>
     </PanelContainer>
   )
@@ -78,14 +84,7 @@ const ItemsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
 `
-const ItemContainer = posed.div({
-  flip: {
-    transition: {
-      duration: 300,
-      ease: 'easeInOut'
-    }
-  }
-})
+const ItemContainer = motion.div;
 
 export default SelectPanel
 

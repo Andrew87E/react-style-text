@@ -48,7 +48,7 @@ const SelectLabel = styled.label`
   display: block;
   padding-bottom: 5px;
   width: 100%;
-  font-size: .8rem;
+  font-size: 1.5rem;
   color: ${props => props.theme.colors.darkgray};
 `
 

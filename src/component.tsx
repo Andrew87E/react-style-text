@@ -1,22 +1,29 @@
-import React from "react";
+import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
-type AnimationProps = {
+interface AnimationProps {
   animationname: AnimationName;
-  byLetter?: boolean;
+  byletter?: boolean;
   duration?: string;
   timing?: string;
   delay?: string;
   iteration?: number;
   direction?: string;
-  fillMode?: string;
-};
+  fillmode?: string;
+}
 
-type StyledTextProps = React.HTMLAttributes<HTMLDivElement> & {
-  children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
+interface StyledTextProps {
+  children:
+    | JSX.Element
+    | JSX.Element[]
+    | ReactNode
+    | string
+    | string[]
+    | number
+    | number[];
   animationProps?: AnimationProps;
-};
+}
 
 export type TypewriterProps = {
   datatext: string[];
@@ -35,8 +42,8 @@ const StyledElement = styled.div<AnimationProps>`
   animation-delay: ${({ delay }) => delay || "0s"};
   animation-iteration-count: ${({ iteration }) => iteration || "infinite"};
   animation-direction: ${({ direction }) => direction || "alternate"};
-  animation-fill-mode: ${({ fillMode }) => fillMode || "forwards"};
-  byletter: ${({ byLetter }) => (byLetter ? "true" : "false")};
+  animation-fill-mode: ${({ fillmode }) => fillmode || "forwards"};
+  byletter: ${({ byletter }) => (byletter ? "true" : "false")};
 `;
 
 type AnimationName = keyof typeof Animations;
@@ -52,11 +59,9 @@ type AnimationName = keyof typeof Animations;
  *
  *
  */
-export const StyledText = ({
-  children,
-  animationProps,
-  ...props
-}: StyledTextProps) => {
+export const StyledText: FunctionComponent<
+  PropsWithChildren<StyledTextProps>
+> = ({ children, animationProps, ...props }) => {
   return (
     <StyledElement {...props} {...animationProps!}>
       {children}

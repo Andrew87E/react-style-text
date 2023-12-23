@@ -1,43 +1,34 @@
 import React from 'react'
-import MovingComponent from 'react-moving-text'
+import { StyledText, Typewriter } from 'react-style-text'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo, faCode } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import Select from '../atoms/selectMenu'
 import RoundButton from '../atoms/roundButton'
-import Modal from '../atoms/modal'
 import RangeController from '../atoms/rangeController'
 import Checkbox from '../atoms/checkbox'
 import CodeContainer from '../atoms/codeContainer'
-import CheckboxButton from '../atoms/checkboxButton'
-import SelectPanel from '../atoms/selectPanel'
 import { TimingFunctionItems, DirectionItems, FillModeItems, AnimationTypes } from './static'
 
-const Text = "React-Moving-Text"
+const Text = "react-style-text"
 const Letters = Text.split("")
-const AnimationOptions = {
-  duration: "",
-  delay: "",
-  iteration: "",
-  timingFunction: "ease",
-  direction: "normal",
-  fillMode: "none"
-}
-
+const borderColor = "#000"
 const Playground = () => {
 
   const [ counter, setCounter ] = React.useState(0)
-
   const [ animationObject, setAnimationObject ] = React.useState("object")
-  const [ animationType, setAnimationType ] = React.useState("blur")
+  const [ animationType, setAnimationType ] = React.useState("fadeIn")
   const [ isIterationDisabled, setIsIterationDisabled ] = React.useState(false)
   const [ duration, setDuration ] = React.useState(1000)
   const [ delay, setDelay ] = React.useState(0)
   const [ interval, setInterval ] = React.useState(100)
-  const [ iterationCount, setIterationCount ] = React.useState(5)
+  const [ iterationCount, setIterationCount ] = React.useState(1)
   const [ timingFunction, setTimingFunction ] = React.useState("ease")
   const [ direction, setDirection ] = React.useState("normal")
-  const [ fillMode, setFillMode ] = React.useState("none")
+  const [ fillmode, setFillMode ] = React.useState("none")
+  const [ initialAnimationFinished, setInitialAnimationFinished ] = React.useState(false)
+  const [ secondaryAnimationFinished, setSecondaryAnimationFinished ] = React.useState(false)
+  
 
   const handleIterationDisable = () => {
     setIsIterationDisabled(!isIterationDisabled)
@@ -58,8 +49,22 @@ const Playground = () => {
 
   return (
     <PlaygroundContainer className="playground">
-
+      <StyledText
+      onAnimationEnd={() => setInitialAnimationFinished(true)}
+          animationProps={{
+            animationname: "fadeInFromLeft",
+            duration: "1000ms",
+            delay: "0ms",
+            direction: "normal",
+            timing: "ease-in-out",
+            iteration: "1",
+            fillmode: "none",
+          }}
+          
+        >
       <FormContainer className="playground_form">
+        {/* when initialAnimationFinished is true we want to play this animation */}
+        
         <StyledForm>
           <Select items={['object', 'letters', 'multiline']} label="presences" handleSelect={(event) => setAnimationObject(event.target.value)} />
           <RangeController
@@ -120,6 +125,42 @@ const Playground = () => {
           <Select items={DirectionItems} label="direction" handleSelect={(event) => setDirection(event.target.value)} />
           <Select items={FillModeItems} label="fill-mode" handleSelect={(event) => setFillMode(event.target.value)}  />
         </StyledForm>
+
+        {initialAnimationFinished &&
+        <StyledText 
+        onAnimationEnd={() => setSecondaryAnimationFinished(true)}
+          animationProps={{
+            animationname: "unfold",
+            duration: "1000ms",
+            delay: "0ms",
+            direction: "normal",
+            timing: "ease-in-out",
+            iteration: "1",
+            fillmode: "none",
+          }}
+        >
+          <div style={{display: 'flex'}}> 
+          {
+            secondaryAnimationFinished &&
+            "Click to copy code".split("").map((letter, index) => (
+              <StyledText 
+              key={index}
+              style={{cursor: "pointer", color:"#fff"}}
+              animationProps={{
+                animationname: "fadeIn",
+                duration: "1000ms",
+                delay: `${index * 10}ms`,
+                direction: "normal",
+                timing: "linear",
+                iteration: 1,
+                fillmode: "forwards",
+              }}
+              >
+                {letter}
+              </StyledText>
+            ))
+          }
+          </div>
         <CodeContainer
           animationObject={animationObject}
           animationType={animationType}
@@ -128,29 +169,32 @@ const Playground = () => {
           direction={direction}
           timingFunction={timingFunction}
           iterationCount={iterationCount}
-          fillMode={fillMode}
+          fillmode={fillmode}
           interval={interval}
         />
-
+        </StyledText>
+      }
       </FormContainer>
-
+</StyledText>
 
       <ResultContainer className="resultContainer">
 
         <ResultField>
           {
             animationObject === "object" &&
-              <MovingComponent
+              <StyledText
                 key={counter}
-                type={animationType}
-                duration={`${duration}ms`}
-                delay={`${delay}s`}
-                direction={direction}
-                timing={timingFunction}
-                iteration={iterationCount}
-                fillMode={fillMode}
+                animationProps={{
+                    animationname: animationType,
+                    duration: `${duration}ms`,
+                    delay: `${interval}ms`,
+                    direction: direction,
+                    timing: timingFunction,
+                    iteration: iterationCount,
+                    fillmode: fillmode,
+                  }}
               >{Text}
-              </MovingComponent>
+              </StyledText>
           }
 
           {
@@ -158,25 +202,29 @@ const Playground = () => {
             <LettersContainer key={counter}>
                 {
                   Letters.map((item, index) =>
-                  <MovingComponent
-                    type={animationType}
-                    duration={`${duration}ms`}
-                    delay={`${index * interval}ms`}
-                    direction={direction}
-                    timing={timingFunction}
-                    iteration={iterationCount}
-                    fillMode={fillMode}
-                    key={index}>
+                  <StyledText
+                  key={index}
+                  animationProps={{
+                    animationname: animationType,
+                    duration: `${duration}ms`,
+                    delay: `${index * interval}ms`,
+                    direction: direction,
+                    timing: timingFunction,
+                    iteration: iterationCount,
+                    fillmode: fillmode,
+                  }}
+                    >
                     {item}
-                  </MovingComponent>)
+                  </StyledText>)
                 }
               </LettersContainer>
           }
 
           {
             animationObject === "multiline" &&
-            <MovingComponent
-              type="typewriter"
+            <Typewriter
+              key={counter}
+              heading='Eat what you love:'
               dataText={[
                 'Sushi',
                 'Pizza',
@@ -193,6 +241,17 @@ const Playground = () => {
 
 
         <EffectController>
+          <StyledText 
+            animationProps={{
+              animationname: "slideInFromTop",
+              duration: "3000ms",
+              delay: "0ms",
+              direction: "normal",
+              timing: "ease-in-out",
+              iteration: "1",
+              fillmode: "none",
+            }}
+          >
           <Select
             hasOptGroup={animationObject !== 'multiline'}
             items={animationObject === 'multiline' ? ['typewriter'] : AnimationTypes}
@@ -201,10 +260,26 @@ const Playground = () => {
             fontSize="1.25rem"
             handleSelect={handleSelectType}
           />
-
+</StyledText>
+{
+  secondaryAnimationFinished ?
+            <StyledText 
+            animationProps={{
+              animationname: "rotateSlowDown",
+              duration: "3000ms",
+              delay: "0ms",
+              direction: "normal",
+              timing: "ease-in-out",
+              iteration: "1",
+              fillmode: "none",
+            }}
+            >
           <RoundButton title={"replay animation"} onClick={handleReplay}>
             <FontAwesomeIcon icon={faRedo} />
           </RoundButton>
+          </StyledText>
+          : <div style={{width: "95px"}} />
+          }
         </EffectController>
       </ResultContainer>
 
@@ -214,9 +289,13 @@ const Playground = () => {
 
 const PlaygroundContainer = styled.div`
   display: flex;
-  width: 100vw;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0 5rem;
   height: calc(100vh - 230px);
-  padding: 0px 100px;
+  background: radial-gradient(at center top, #323234, #01030D);
 `
 const FormContainer = styled.div`
   display: flex;
@@ -225,14 +304,20 @@ const FormContainer = styled.div`
   flex-direction: column;
   width: 400px;
   min-width: 300px;
-  height: calc(100vh - 230px);
+  height: calc(80vh);
   z-index: 10;
+  align-self: flex-start;
+
+  @media (min-width: 1080px) {
+    margin-left: 150px;
+  }
+
 `
 const StyledForm = styled.form`
   position: relative;
-  width: 100%;
+  width: 25vw;
   border-radius: 3px;
-  margin-bottom: 0;
+  margin-bottom: 5rem;
 `
 const RowContainer = styled.div`
   display: flex;
@@ -259,6 +344,31 @@ const ResultField = styled.div`
   font-weight: 100;
   letter-spacing: -2;
   color: ${props => props.theme.colors.primary};
+  text-border: 1px solid ${props => props.theme.colors.primary};
+  text-shadow: 1px 1px 0 ${borderColor},
+    -1px 1px 0 ${borderColor},
+    1px -1px 0 ${borderColor},
+    -1px -1px 0 ${borderColor},
+    0px 1px 0 ${borderColor},
+    0px -1px 0 ${borderColor},
+    -1px 0px 0 ${borderColor},
+    1px 0px 0 ${borderColor},
+    2px 2px 0 ${borderColor},
+    -2px 2px 0 ${borderColor},
+    2px -2px 0 ${borderColor},
+    -2px -2px 0 ${borderColor},
+    0px 2px 0 ${borderColor},
+    0px -2px 0 ${borderColor},
+    -2px 0px 0 ${borderColor},
+    2px 0px 0 ${borderColor},
+    1px 2px 0 ${borderColor},
+    -1px 2px 0 ${borderColor},
+    1px -2px 0 ${borderColor},
+    -1px -2px 0 ${borderColor},
+    2px 1px 0 ${borderColor},
+    -2px 1px 0 ${borderColor},
+    2px -1px 0 ${borderColor},
+    -2px -1px 0 ${borderColor};
 `
 const LettersContainer = styled.div`
   width: 100%;
@@ -266,6 +376,7 @@ const LettersContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
 `
 
 const EffectController = styled.div`

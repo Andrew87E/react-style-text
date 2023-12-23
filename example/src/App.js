@@ -1,7 +1,6 @@
 import React from 'react'
-import styled, { ThemeProvider } from 'styled-components'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import MovingComponent from 'react-moving-text'
+import { ThemeProvider } from 'styled-components'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GlobalStyles } from './globalStyles';
 import theme from './theme';
 import Header from './components/Header/header';
@@ -17,15 +16,12 @@ class App extends React.Component{
         <GlobalStyles />
         <ThemeProvider theme={theme}>
           <Header />
-
-          <Switch>
-            <Route exact path="/react-moving-text/">
-              <Playground />
-            </Route>
-            <Route path="/react-moving-text/example">
-              <ExamplePage />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/" element={<Playground />} />
+            <Route path="/example"  element={<ExamplePage />} />
+            
+            
+          </Routes>
 
           <Footer />
         </ThemeProvider>
