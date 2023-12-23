@@ -23,7 +23,6 @@ const Header = () => {
       </ForkRibbon>
       <StyledH1>
         <AnimatedComponent
-          animationProps={{
             animationname: "fadeInFromTop",
             duration: "1000ms",
             delay: "0ms",
@@ -31,7 +30,6 @@ const Header = () => {
             timing: "ease-in-out",
             iteration: "1",
             fillmode: "none",
-          }}
         >
           <StyledLink color="#fff" noTransition={true} to="/">
             React-Style-Text
@@ -65,7 +63,6 @@ const Header = () => {
         </StyledSubHeader>
       </AnimatedComponent>
       <AnimatedComponent
-        animationProps={{
           animationname: "fadeInFromBottom",
           duration: "1000ms",
           delay: "0ms",
@@ -73,7 +70,6 @@ const Header = () => {
           timing: "ease-in-out",
           iteration: "1",
           fillmode: "none",
-        }}
       >
         <InstallInfoBar>
           <StyledCode

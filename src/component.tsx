@@ -1,6 +1,5 @@
 import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
-import Typer from "./typer";
 
 interface AnimationProps {
   animationname: AnimationName;
