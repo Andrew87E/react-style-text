@@ -13,7 +13,7 @@ interface AnimationProps {
   fillmode?: string;
 }
 
-interface StyledTextProps {
+interface StyledTextProps extends AnimationProps {
   children:
     | JSX.Element
     | JSX.Element[]
@@ -25,11 +25,6 @@ interface StyledTextProps {
   animationProps?: AnimationProps;
 }
 
-export type TypewriterProps = {
-  datatext: string[];
-  statictext?: string;
-  cursorcolor?: string;
-};
 // animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
 
 const StyledElement = styled.div<AnimationProps>`
@@ -56,32 +51,22 @@ type AnimationName = keyof typeof Animations;
  * This Component is used to apply animation to any text.
  * Use animationname prop to apply animation.
  *
+ * @param animationname - The name of the animation to be applied.
+ * @param byletter - If true, the animation will be applied to each letter of the text.
+ * @param duration - The duration of the animation.
+ * @param timing - The timing function of the animation.
+ * @param delay - The delay of the animation.
+ * @param iteration - The number of times the animation should be repeated.
+ * @param direction - The direction of the animation.
+ * @param fillmode - The fillmode of the animation.
+ * @param children - The text to be animated.
  *
  *
  */
 export const StyledText: FunctionComponent<
   PropsWithChildren<StyledTextProps>
-> = ({ children, animationProps, ...props }) => {
-  return (
-    <StyledElement {...props} {...animationProps!}>
-      {children}
-    </StyledElement>
-  );
-};
-
-/**
- *
- *
- *
- */
-export const Typewriter: React.FC<TypewriterProps> = (props) => {
-  return (
-    <Typer
-      statictext={props.statictext}
-      datatext={props.datatext}
-      cursorcolor={props.cursorcolor}
-    />
-  );
+> = ({ children, ...props }) => {
+  return <StyledElement {...props}>{children}</StyledElement>;
 };
 
 /* ========== basic animations ========== */

@@ -1,10 +1,53 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { TypewriterProps } from "./component";
 
 interface CursorProps {
   cursorcolor?: string;
 }
+
+export type TypewriterProps = {
+  datatext: string[];
+  statictext?: string;
+  cursorcolor?: string;
+};
+
+/**
+ *
+ * @name Typewriter
+ *
+ * @description
+ * A typewriter component that takes in an array of strings and types them out one by one.
+ *
+ * @param datatext - An array of strings to be typed out.
+ *
+ * @param statictext - A string that is displayed before the typewriter effect.
+ *
+ * @param cursorcolor - The color of the cursor.
+ *
+ * @example
+ * import { Typewriter } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <Typewriter
+ * datatext={["Hello World!", "Hello World Again!"]}
+ * statictext="This is a "
+ * cursorcolor="red"
+ * />
+ * );
+ * };
+ *
+ *
+ */
+export const Typewriter: React.FC<TypewriterProps> = (props) => {
+  return (
+    <Typer
+      statictext={props.statictext}
+      datatext={props.datatext}
+      cursorcolor={props.cursorcolor}
+    />
+  );
+};
 
 const Typer: React.FC<TypewriterProps> = ({
   statictext = "",
