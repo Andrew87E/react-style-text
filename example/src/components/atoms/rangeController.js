@@ -77,9 +77,9 @@ const StyledInput = styled.input.attrs({ type: "range" })`
     width: 13px;
     border-radius: 20px;
     background: ${(props) =>
-      props.disabled ? props.theme.colors.gray : props.theme.colors.middle};
+      props.disabled ? props.theme.colors.gray : props.theme.colors.gray};
     cursor: pointer;
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
     margin-top: -4.5px;
   }
 

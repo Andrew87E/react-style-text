@@ -13,8 +13,8 @@ import { TimingFunctionItems, DirectionItems, FillModeItems, AnimationTypes } fr
 const Text = "react-style-text"
 const Letters = Text.split("")
 const borderColor = "#000"
-const Playground = () => {
 
+const Playground = () => {
   const [ counter, setCounter ] = React.useState(0)
   const [ animationObject, setAnimationObject ] = React.useState("object")
   const [ animationType, setAnimationType ] = React.useState("fadeIn")
@@ -48,7 +48,7 @@ const Playground = () => {
   }
 
   return (
-    <PlaygroundContainer className="playground">
+    <PlaygroundContainer>
       <StyledText
       onAnimationEnd={() => setInitialAnimationFinished(true)}
           animationProps={{
