@@ -82,6 +82,7 @@ const InstallInfoBar = styled.div`
   border-radius: 0;
   font-size: 1rem;
   padding: 12px 25px;
+  cursor: pointer;
 `
 
 export default Header
