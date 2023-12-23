@@ -59,8 +59,28 @@ type AnimationName = keyof typeof Animations;
  * @param iteration - The number of times the animation should be repeated.
  * @param direction - The direction of the animation.
  * @param fillmode - The fillmode of the animation.
+ *
  * @param children - The text to be animated.
  *
+ * @example
+ * import { StyledText } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <StyledText
+ * animationname="spin"
+ * byletter={true}
+ * duration="1s"
+ * timing="ease"
+ * delay="0s"
+ * iteration="infinite"
+ * direction="alternate"
+ * fillmode="forwards"
+ * >
+ * Hello World!
+ * </StyledText>
+ * );
+ * };
  *
  */
 export const StyledText: FunctionComponent<
