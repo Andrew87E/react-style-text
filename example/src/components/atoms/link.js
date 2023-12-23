@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const StyledLink = ({ children, to, target, margin, color, noTransition }) => {
   return (
@@ -28,7 +28,7 @@ const StyledLink = ({ children, to, target, margin, color, noTransition }) => {
   );
 };
 
-const StyledLinkWithouTransition = styled(Link)`
+const StyledLinkWithouTransition = styled.a`
   text-decoration: none;
   cursor: pointer;
   margin: ${(props) => props.margin};
@@ -39,7 +39,7 @@ const StyledLinkWithouTransition = styled(Link)`
   }
 `;
 
-const StyledRegularLink = styled(Link)`
+const StyledRegularLink = styled.a`
   text-decoration: none;
   cursor: pointer;
   margin: ${(props) => props.margin};

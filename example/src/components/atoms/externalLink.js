@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const ExternalLink = ({ children, href, target, margin, color }) => {
   return (
     <StyledRegularLink
-      href={href}
+      // href={href}
       target={target}
       margin={margin}
       color={color}>
@@ -13,7 +13,7 @@ const ExternalLink = ({ children, href, target, margin, color }) => {
   )
 }
 
-const StyledRegularLink = styled.a`
+const StyledRegularLink = styled.p`
   text-decoration: none;
   cursor: pointer;
   margin: ${props => props.margin};

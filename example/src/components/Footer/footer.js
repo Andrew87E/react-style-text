@@ -39,7 +39,7 @@ const Footer = () => {
           }}
         >
           <ExternalLink
-            href="https://github.com/andrew87e"
+            // href="https://github.com/andrew87e"
             target="_blank"
             color="#5cbd6b"
           >
