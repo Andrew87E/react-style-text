@@ -18,7 +18,7 @@ type fillmode = "none" | "forwards" | "backwards" | "both";
 type iteration = "infinite" | number;
 type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
 
-interface StyledTextProps extends AnimationProps {
+interface AnimatedComponentProps extends AnimationProps {
   children:
     | JSX.Element
     | JSX.Element[]
@@ -50,7 +50,7 @@ type AnimationName = keyof typeof Animations;
 
 /**
  *
- * @name StyledText
+ * @name AnimatedComponent
  *
  * @description
  * This Component is used to apply animation to any text.
@@ -68,11 +68,11 @@ type AnimationName = keyof typeof Animations;
  * @param children - The text to be animated.
  *
  * @example
- * import { StyledText } from "react-typewriter-effect";
+ * import { AnimatedComponent } from "react-typewriter-effect";
  *
  * const App = () => {
  * return (
- * <StyledText
+ * <AnimatedComponent
  * animationname="spin"
  * byletter={true}
  * duration="1s"
@@ -83,13 +83,13 @@ type AnimationName = keyof typeof Animations;
  * fillmode="forwards"
  * >
  * Hello World!
- * </StyledText>
+ * </AnimatedComponent>
  * );
  * };
  *
  */
-export const StyledText: FunctionComponent<
-  PropsWithChildren<StyledTextProps>
+export const AnimatedComponent: FunctionComponent<
+  PropsWithChildren<AnimatedComponentProps>
 > = ({ children, ...props }) => {
   return <StyledElement {...props}>{children}</StyledElement>;
 };
@@ -541,7 +541,7 @@ const slideOutToRight = keyframes`
     transform: translateX(100%);
   }
 `;
-const slideInFromTop = keyframes`
+const slideInFromBottom = keyframes`
   0% {
     opacity: 0;
     transform: translateY(100%);
@@ -555,7 +555,7 @@ const slideInFromTop = keyframes`
     transform: translateY(0);
   }
 `;
-const slideInFromBottom = keyframes`
+const slideInFromTop = keyframes`
   0% {
     opacity: 0;
     transform: translateY(-100%);
@@ -619,11 +619,11 @@ const unfold = keyframes`
   100% { transform: scale3d(1, 1, 1); }
 `;
 
-const zoomIn = keyframes`
+const zoomOut = keyframes`
   from { transform: scale(2); }
   to { transform: scale(1); }
 `;
-const zoomOut = keyframes`
+const zoomIn = keyframes`
   from { transform: scale(1); }
   to { transform: scale(2); }
 `;
@@ -638,7 +638,7 @@ const rotateCW = keyframes`
     transform-origin: center center;
   }
 `;
-const rotateACW = keyframes`
+const rotateCCW = keyframes`
   from {
     transform: rotate(0deg);
     transform-origin: center center;
@@ -719,7 +719,7 @@ const Animations = {
   hangOnRight: hangOnRight,
   rotateSlowDown: rotateSlowDown,
   rotateCW: rotateCW,
-  rotateACW: rotateACW,
+  rotateCCW: rotateCCW,
   shakeMix: shakeMix,
   shakeHorizontal: shakeHorizontal,
   shakeVertical: shakeVertical,

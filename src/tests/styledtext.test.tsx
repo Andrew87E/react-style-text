@@ -1,16 +1,16 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { StyledText } from "../index";
+import { AnimatedComponent } from "../index";
 
 /**
  * @jest-environment jsdom
  */
 
-describe("StyledText", () => {
+describe("AnimatedComponent", () => {
   test("renders correctly", async () => {
     render(
-      <StyledText
+      <AnimatedComponent
         animationname="bounce"
         direction="normal"
         fillmode="backwards"
@@ -18,10 +18,9 @@ describe("StyledText", () => {
         delay="0s"
         iteration="infinite"
         timing="ease"
-        
       >
         Test DataText
-      </StyledText>
+      </AnimatedComponent>
     );
 
     expect(await screen.getByText("Test DataText")).toBeInTheDocument();

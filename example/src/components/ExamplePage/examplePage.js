@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { StyledText } from "react-style-text";
+import { AnimatedComponent } from "react-style-text";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faCode } from "@fortawesome/free-solid-svg-icons";
 import SelectPanel from "../atoms/selectPanel";
@@ -90,7 +90,7 @@ const ExamplePage = ({}) => {
 
     return `
 import React, { useState } from 'react'
-import {StyledText} from 'react-style-text'
+import {AnimatedComponent} from 'react-style-text'
 
 const AnimationsForChaining = [${itemsText}]
 
@@ -105,7 +105,7 @@ const AnimationChain = () => {
   }
 
   return (
-    <StyledText
+    <AnimatedComponent
       onAnimationEnd={handleChainAnimation}
       type={animationType}
       duration="1000ms"
@@ -113,7 +113,7 @@ const AnimationChain = () => {
       fillmode="forwards"
       iteration={1}>
       react-style-text
-    </StyledText>
+    </AnimatedComponent>
   )
 }
 `;
@@ -150,7 +150,7 @@ const AnimationChain = () => {
       </div>
       <ResultContainer className="resultContainer">
         <ResultField>
-          <StyledText
+          <AnimatedComponent
             onAnimationEnd={handleChainAnimation}
             type={animationType}
             duration="1000ms"
@@ -159,7 +159,7 @@ const AnimationChain = () => {
             iteration={1}
           >
             react-style-text
-          </StyledText>
+          </AnimatedComponent>
         </ResultField>
         <ButtonGroupContainer>
           <RoundButton
