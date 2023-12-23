@@ -4,6 +4,9 @@ import { StyledText } from "react-style-text";
 import ExternalLink from "../atoms/externalLink";
 
 const Footer = () => {
+  const me = "andrew87e";
+  const itsaMe = me.split("");
+
   return (
     <FooterContainer>
       Made with
@@ -19,18 +22,32 @@ const Footer = () => {
           fillmode: "none",
         }}
       >
-        &nbsp;❤&nbsp;
+        ❤
       </StyledText>
-      by{" "}
-      <ExternalLink
-        href="https://github.com/andrew87e"
-        target="_blank"
-        margin="0px 10px"
-        color="#5cbd6b"
-      >
-        andrew87e
-      </ExternalLink>{" "}
-      using React and styled-components 💅🏽
+      by&nbsp;
+      {itsaMe.map((letter, index) => (
+        <StyledText
+          key={index}
+          animationProps={{
+            animationname: "flipIn",
+            duration: "2000ms",
+            delay: ` ${index * 100}ms`,
+            direction: "normal",
+            timing: "ease-in-out",
+            iteration: "1",
+            fillmode: "none",
+          }}
+        >
+          <ExternalLink
+            href="https://github.com/andrew87e"
+            target="_blank"
+            color="#5cbd6b"
+          >
+            {letter}
+          </ExternalLink>
+        </StyledText>
+      ))}
+      &nbsp; using React and styled-components 💅🏽
     </FooterContainer>
   );
 };

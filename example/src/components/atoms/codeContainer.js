@@ -73,16 +73,17 @@ const Container = styled.pre`
   display: block;
   position: relative;
   padding: 1rem 2rem;
-  width: 100%;
+  width: 25vw;
   font-size: 1.1rem;
   line-height: 1.5;
   color: ${props => props.theme.colors.white};
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
   word-break: break-all;
   overflow-wrap: break-word;
   background-color: ${props => props.theme.colors.middle};
   border: 2px solid  ${props => props.theme.colors.primary};
   border-radius: 8px;
-  overflow: auto;
+  overflow: scroll;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
   cursor: pointer;
 
