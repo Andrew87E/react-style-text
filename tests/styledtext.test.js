@@ -19,9 +19,9 @@ const index_1 = require("../index");
 /**
  * @jest-environment jsdom
  */
-describe("StyledText", () => {
+describe("AnimatedComponent", () => {
     test("renders correctly", () => __awaiter(void 0, void 0, void 0, function* () {
-        (0, react_2.render)(react_1.default.createElement(index_1.StyledText, { animationProps: { animationname: "bounce" } }, "Test DataText"));
+        (0, react_2.render)(react_1.default.createElement(index_1.AnimatedComponent, { animationname: "bounce", direction: "normal", fillmode: "backwards", duration: "1s", delay: "0s", iteration: "infinite", timing: "ease" }, "Test DataText"));
         expect(yield react_2.screen.getByText("Test DataText")).toBeInTheDocument();
     }));
 });

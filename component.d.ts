@@ -1,42 +1,64 @@
-import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
+import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 interface AnimationProps {
     animationname: AnimationName;
     byletter?: boolean;
     duration?: string;
-    timing?: string;
+    timing?: timing;
     delay?: string;
-    iteration?: number;
-    direction?: string;
-    fillmode?: string;
+    iteration?: iteration;
+    direction?: direction;
+    fillmode?: fillmode;
 }
-interface StyledTextProps {
+type direction = "normal" | "reverse" | "alternate" | "alternate-reverse";
+type fillmode = "none" | "forwards" | "backwards" | "both";
+type iteration = "infinite" | number;
+type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
+interface AnimatedComponentProps extends AnimationProps {
     children: JSX.Element | JSX.Element[] | ReactNode | string | string[] | number | number[];
     animationProps?: AnimationProps;
 }
-export type TypewriterProps = {
-    datatext: string[];
-    statictext?: string;
-    cursorcolor?: string;
-};
 type AnimationName = keyof typeof Animations;
 /**
  *
- * @name StyledText
+ * @name AnimatedComponent
  *
  * @description
  * This Component is used to apply animation to any text.
  * Use animationname prop to apply animation.
  *
+ * @param animationname - The name of the animation to be applied.
+ * @param byletter - If true, the animation will be applied to each letter of the text.
+ * @param duration - The duration of the animation.
+ * @param timing - The timing function of the animation.
+ * @param delay - The delay of the animation.
+ * @param iteration - The number of times the animation should be repeated.
+ * @param direction - The direction of the animation.
+ * @param fillmode - The fillmode of the animation.
  *
+ * @param children - The text to be animated.
+ *
+ * @example
+ * import { AnimatedComponent } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <AnimatedComponent
+ * animationname="spin"
+ * byletter={true}
+ * duration="1s"
+ * timing="ease"
+ * delay="0s"
+ * iteration="infinite"
+ * direction="alternate"
+ * fillmode="forwards"
+ * >
+ * Hello World!
+ * </AnimatedComponent>
+ * );
+ * };
  *
  */
-export declare const StyledText: FunctionComponent<PropsWithChildren<StyledTextProps>>;
-/**
- *
- *
- *
- */
-export declare const Typewriter: React.FC<TypewriterProps>;
+export declare const AnimatedComponent: FunctionComponent<PropsWithChildren<AnimatedComponentProps>>;
 declare const Animations: {
     blur: import("styled-components").Keyframes;
     bounce: import("styled-components").Keyframes;
@@ -74,7 +96,7 @@ declare const Animations: {
     hangOnRight: import("styled-components").Keyframes;
     rotateSlowDown: import("styled-components").Keyframes;
     rotateCW: import("styled-components").Keyframes;
-    rotateACW: import("styled-components").Keyframes;
+    rotateCCW: import("styled-components").Keyframes;
     shakeMix: import("styled-components").Keyframes;
     shakeHorizontal: import("styled-components").Keyframes;
     shakeVertical: import("styled-components").Keyframes;

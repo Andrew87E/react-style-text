@@ -23,9 +23,45 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Typewriter = void 0;
 const react_1 = __importStar(require("react"));
 const styled_components_1 = __importStar(require("styled-components"));
-const Typer = ({ statictext = "", datatext, cursorcolor, }) => {
+/**
+ *
+ * @name Typewriter
+ *
+ * @description
+ * A typewriter component that takes in an array of strings and types them out one by one.
+ *
+ * @prop datatext - An array of strings to be typed out.
+ *
+ * @prop statictext - A string that is displayed before the typewriter effect. Default is an empty string.
+ *
+ * @prop cursorcolor - The color of the cursor.
+ *
+ * @prop typingspeed - The speed at which the text is typed out in milliseconds. Default is 150ms
+ *
+ * @example
+ * import { Typewriter } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <Typewriter
+ * datatext={["Hello World!", "Hello World Again!"]}
+ * statictext="This is a "
+ * cursorcolor="red"
+ * typingspeed={150}
+ * />
+ * );
+ * };
+ *
+ *
+ */
+const Typewriter = (props) => {
+    return (react_1.default.createElement(Typer, { statictext: props.statictext, datatext: props.datatext, cursorcolor: props.cursorcolor, typingspeed: props.typingspeed || 150 }));
+};
+exports.Typewriter = Typewriter;
+const Typer = ({ statictext, datatext, cursorcolor, }) => {
     const [text, setText] = (0, react_1.useState)("");
     const [isDeleting, setIsDeleting] = (0, react_1.useState)(false);
     const [loopNum, setLoopNum] = (0, react_1.useState)(0);
@@ -57,7 +93,6 @@ const Typer = ({ statictext = "", datatext, cursorcolor, }) => {
         react_1.default.createElement("span", null, text),
         react_1.default.createElement(Cursor, { cursorcolor: cursorcolor })));
 };
-exports.default = Typer;
 const blink = (0, styled_components_1.keyframes) `
   50% {
     border-color: transparent;

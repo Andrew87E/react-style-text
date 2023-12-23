@@ -37,10 +37,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Typewriter = exports.StyledText = void 0;
+exports.AnimatedComponent = void 0;
 const react_1 = __importDefault(require("react"));
 const styled_components_1 = __importStar(require("styled-components"));
-const typer_1 = __importDefault(require("./typer"));
 // animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
 const StyledElement = styled_components_1.default.div `
   margin: 0;
@@ -56,29 +55,49 @@ const StyledElement = styled_components_1.default.div `
 `;
 /**
  *
- * @name StyledText
+ * @name AnimatedComponent
  *
  * @description
  * This Component is used to apply animation to any text.
  * Use animationname prop to apply animation.
  *
+ * @param animationname - The name of the animation to be applied.
+ * @param byletter - If true, the animation will be applied to each letter of the text.
+ * @param duration - The duration of the animation.
+ * @param timing - The timing function of the animation.
+ * @param delay - The delay of the animation.
+ * @param iteration - The number of times the animation should be repeated.
+ * @param direction - The direction of the animation.
+ * @param fillmode - The fillmode of the animation.
  *
+ * @param children - The text to be animated.
+ *
+ * @example
+ * import { AnimatedComponent } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <AnimatedComponent
+ * animationname="spin"
+ * byletter={true}
+ * duration="1s"
+ * timing="ease"
+ * delay="0s"
+ * iteration="infinite"
+ * direction="alternate"
+ * fillmode="forwards"
+ * >
+ * Hello World!
+ * </AnimatedComponent>
+ * );
+ * };
  *
  */
-const StyledText = (_a) => {
-    var { children, animationProps } = _a, props = __rest(_a, ["children", "animationProps"]);
-    return (react_1.default.createElement(StyledElement, Object.assign({}, props, animationProps), children));
+const AnimatedComponent = (_a) => {
+    var { children } = _a, props = __rest(_a, ["children"]);
+    return react_1.default.createElement(StyledElement, Object.assign({}, props), children);
 };
-exports.StyledText = StyledText;
-/**
- *
- *
- *
- */
-const Typewriter = (props) => {
-    return (react_1.default.createElement(typer_1.default, { statictext: props.statictext, datatext: props.datatext, cursorcolor: props.cursorcolor }));
-};
-exports.Typewriter = Typewriter;
+exports.AnimatedComponent = AnimatedComponent;
 /* ========== basic animations ========== */
 const blur = (0, styled_components_1.keyframes) `
 from { filter: blur(0px); }
@@ -522,7 +541,7 @@ const slideOutToRight = (0, styled_components_1.keyframes) `
     transform: translateX(100%);
   }
 `;
-const slideInFromTop = (0, styled_components_1.keyframes) `
+const slideInFromBottom = (0, styled_components_1.keyframes) `
   0% {
     opacity: 0;
     transform: translateY(100%);
@@ -536,7 +555,7 @@ const slideInFromTop = (0, styled_components_1.keyframes) `
     transform: translateY(0);
   }
 `;
-const slideInFromBottom = (0, styled_components_1.keyframes) `
+const slideInFromTop = (0, styled_components_1.keyframes) `
   0% {
     opacity: 0;
     transform: translateY(-100%);
@@ -598,11 +617,11 @@ const unfold = (0, styled_components_1.keyframes) `
   60% { transform: scale3d(0.4, 1, 1); }
   100% { transform: scale3d(1, 1, 1); }
 `;
-const zoomIn = (0, styled_components_1.keyframes) `
+const zoomOut = (0, styled_components_1.keyframes) `
   from { transform: scale(2); }
   to { transform: scale(1); }
 `;
-const zoomOut = (0, styled_components_1.keyframes) `
+const zoomIn = (0, styled_components_1.keyframes) `
   from { transform: scale(1); }
   to { transform: scale(2); }
 `;
@@ -616,7 +635,7 @@ const rotateCW = (0, styled_components_1.keyframes) `
     transform-origin: center center;
   }
 `;
-const rotateACW = (0, styled_components_1.keyframes) `
+const rotateCCW = (0, styled_components_1.keyframes) `
   from {
     transform: rotate(0deg);
     transform-origin: center center;
@@ -695,7 +714,7 @@ const Animations = {
     hangOnRight: hangOnRight,
     rotateSlowDown: rotateSlowDown,
     rotateCW: rotateCW,
-    rotateACW: rotateACW,
+    rotateCCW: rotateCCW,
     shakeMix: shakeMix,
     shakeHorizontal: shakeHorizontal,
     shakeVertical: shakeVertical,
