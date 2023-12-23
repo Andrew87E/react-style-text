@@ -9,7 +9,9 @@ const Header = () => {
   const textAreaRef = useRef(null);
   return (
     <NavBar>
-      <ForkRibbon href="https://github.com/andrew87e/react-style-text" target="_blank">
+      <ForkRibbon 
+      href="https://github.com/andrew87e/react-style-text" 
+      target="_blank">
         <img
           width="149"
           height="149"
