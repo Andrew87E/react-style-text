@@ -224,9 +224,8 @@ const Playground = () => {
           {animationObject === "multiline" && (
             <Typewriter
               key={counter}
-              heading="Eat what you love:"
-              dataText={["Sushi", "Pizza", "Brötchen", "Salat"]}
-              cursorColor="#2196f3"
+              datatext={["Sushi", "Pizza", "Brötchen", "Salat"]}
+              cursorcolor="green"
             />
           )}
         </ResultField>
