@@ -1,19 +1,23 @@
 import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
-import Typer from "./typer";
 
 interface AnimationProps {
   animationname: AnimationName;
   byletter?: boolean;
   duration?: string;
-  timing?: string;
+  timing?: timing;
   delay?: string;
-  iteration?: number;
-  direction?: string;
-  fillmode?: string;
+  iteration?: iteration;
+  direction?: direction;
+  fillmode?: fillmode;
 }
 
-interface StyledTextProps {
+type direction = "normal" | "reverse" | "alternate" | "alternate-reverse";
+type fillmode = "none" | "forwards" | "backwards" | "both";
+type iteration = "infinite" | number;
+type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
+
+interface AnimatedComponentProps extends AnimationProps {
   children:
     | JSX.Element
     | JSX.Element[]
@@ -25,11 +29,6 @@ interface StyledTextProps {
   animationProps?: AnimationProps;
 }
 
-export type TypewriterProps = {
-  datatext: string[];
-  statictext?: string;
-  cursorcolor?: string;
-};
 // animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
 
 const StyledElement = styled.div<AnimationProps>`
@@ -50,38 +49,48 @@ type AnimationName = keyof typeof Animations;
 
 /**
  *
- * @name StyledText
+ * @name AnimatedComponent
  *
  * @description
  * This Component is used to apply animation to any text.
  * Use animationname prop to apply animation.
  *
+ * @param animationname - The name of the animation to be applied.
+ * @param byletter - If true, the animation will be applied to each letter of the text.
+ * @param duration - The duration of the animation.
+ * @param timing - The timing function of the animation.
+ * @param delay - The delay of the animation.
+ * @param iteration - The number of times the animation should be repeated.
+ * @param direction - The direction of the animation.
+ * @param fillmode - The fillmode of the animation.
  *
+ * @param children - The text to be animated.
+ *
+ * @example
+ * import { AnimatedComponent } from "react-typewriter-effect";
+ *
+ * const App = () => {
+ * return (
+ * <AnimatedComponent
+ * animationname="spin"
+ * byletter={true}
+ * duration="1s"
+ * timing="ease"
+ * delay="0s"
+ * iteration="infinite"
+ * direction="alternate"
+ * fillmode="forwards"
+ * >
+ * Hello World!
+ * </AnimatedComponent>
+ * );
+ * };
  *
  */
-export const StyledText: FunctionComponent<
-  PropsWithChildren<StyledTextProps>
-> = ({ children, animationProps, ...props }) => {
-  return (
-    <StyledElement {...props} {...animationProps!}>
-      {children}
-    </StyledElement>
-  );
-};
-
-/**
- *
- *
- *
- */
-export const Typewriter: React.FC<TypewriterProps> = (props) => {
-  return (
-    <Typer
-      statictext={props.statictext}
-      datatext={props.datatext}
-      cursorcolor={props.cursorcolor}
-    />
-  );
+export const AnimatedComponent: FunctionComponent<
+  PropsWithChildren<AnimatedComponentProps>
+> = ({ children, ...props }) => {
+  return <StyledElement {...props}>{children}</StyledElement>;
 };
 
 /* ========== basic animations ========== */
@@ -531,7 +540,7 @@ const slideOutToRight = keyframes`
     transform: translateX(100%);
   }
 `;
-const slideInFromTop = keyframes`
+const slideInFromBottom = keyframes`
   0% {
     opacity: 0;
     transform: translateY(100%);
@@ -545,7 +554,7 @@ const slideInFromTop = keyframes`
     transform: translateY(0);
   }
 `;
-const slideInFromBottom = keyframes`
+const slideInFromTop = keyframes`
   0% {
     opacity: 0;
     transform: translateY(-100%);
@@ -609,11 +618,11 @@ const unfold = keyframes`
   100% { transform: scale3d(1, 1, 1); }
 `;
 
-const zoomIn = keyframes`
+const zoomOut = keyframes`
   from { transform: scale(2); }
   to { transform: scale(1); }
 `;
-const zoomOut = keyframes`
+const zoomIn = keyframes`
   from { transform: scale(1); }
   to { transform: scale(2); }
 `;
@@ -628,7 +637,7 @@ const rotateCW = keyframes`
     transform-origin: center center;
   }
 `;
-const rotateACW = keyframes`
+const rotateCCW = keyframes`
   from {
     transform: rotate(0deg);
     transform-origin: center center;
@@ -709,7 +718,7 @@ const Animations = {
   hangOnRight: hangOnRight,
   rotateSlowDown: rotateSlowDown,
   rotateCW: rotateCW,
-  rotateACW: rotateACW,
+  rotateCCW: rotateCCW,
   shakeMix: shakeMix,
   shakeHorizontal: shakeHorizontal,
   shakeVertical: shakeVertical,

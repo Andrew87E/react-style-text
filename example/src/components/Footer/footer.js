@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { StyledText } from "react-style-text";
+import { AnimatedComponent } from "react-style-text";
 import ExternalLink from "../atoms/externalLink";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       Made with
-      <StyledText
+      <AnimatedComponent
         style={{ margin: "0px 10px", color: "red" }}
         animationProps={{
           animationname: "spin",
@@ -23,10 +23,10 @@ const Footer = () => {
         }}
       >
         ❤
-      </StyledText>
+      </AnimatedComponent>
       by&nbsp;
       {itsaMe.map((letter, index) => (
-        <StyledText
+        <AnimatedComponent
           key={index}
           animationProps={{
             animationname: "flipIn",
@@ -45,7 +45,7 @@ const Footer = () => {
           >
             {letter}
           </ExternalLink>
-        </StyledText>
+        </AnimatedComponent>
       ))}
       &nbsp; using React and styled-components 💅🏽
     </FooterContainer>
@@ -63,7 +63,7 @@ const FooterContainer = styled.div`
   font-size: 0.8rem;
   color: ${(props) => props.theme.colors.middle};
   // background-color: ${(props) => props.theme.colors.secondary};
-  background: radial-gradient(at left top, #000, #01030D);
+  background: radial-gradient(at left top, #000, #01030d);
 `;
 
 export default Footer;

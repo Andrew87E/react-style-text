@@ -30,15 +30,15 @@ yarn add react-style-text
 
 ## Usage
 
-To use react-style-text in your react project, wrap the content with a `StyledText` component and customize the animation with relevant properties.
+To use react-style-text in your react project, wrap the content with a `AnimatedComponent` component and customize the animation with relevant properties.
 
 ```jsx
 import React from "react";
-import { StyledText } from "react-style-text";
+import { AnimatedComponent } from "react-style-text";
 
 const MyAnimatedTypo = () => {
   return (
-    <StyledText
+    <AnimatedComponent
     animationProps={{
       animationname="animation_type"
       duration="1000ms"
@@ -50,7 +50,7 @@ const MyAnimatedTypo = () => {
     }}
     >
       Content...
-    </StyledText>
+    </AnimatedComponent>
   );
 };
 ```
@@ -106,7 +106,7 @@ A string array of animation names used to wrap the animations you want to chain.
 
 ```jsx
 import React, { useState } from "react";
-import {StyledText} from "react-style-text";
+import {AnimatedComponent} from "react-style-text";
 
 const AnimationsForChaining = [
   "swing",
@@ -125,7 +125,7 @@ const AnimationChain = () => {
   };
 
   return (
-    <StyledText
+    <AnimatedComponent
       onAnimationEnd={handleChainAnimation}
       animationProps={{
       type={animationType}
@@ -134,8 +134,8 @@ const AnimationChain = () => {
       iteration={1}
     }}
     >
-      StyledText
-    </StyledText>
+      AnimatedComponent
+    </AnimatedComponent>
   );
 };
 ```
