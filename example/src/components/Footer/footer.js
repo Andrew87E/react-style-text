@@ -8,17 +8,21 @@ const Footer = () => {
     <FooterContainer>
       Made with
       <StyledText
-        type="flipHorizontal"
-        iteration="infinite"
-        duration="2000ms"
-        timing="linear"
-        
         style={{ margin: "0px 10px", color: "red" }}
+        onAnimationEnd={() => console.log("animation ended")}
+        animationProps={{
+          animationname: "spin",
+          duration: "2000ms",
+          delay: "0ms",
+          direction: "normal",
+          timing: "linear",
+          iteration: "infinite",
+          fillMode: "none",
+        }}
       >
         &nbsp;❤&nbsp;
       </StyledText>
       by{" "}
-
       <ExternalLink
         href="https://github.com/andrew87e"
         target="_blank"

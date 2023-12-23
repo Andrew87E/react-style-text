@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
-type AnimationProps = {
+interface AnimationProps extends React.HTMLAttributes<HTMLDivElement> {
   animationname: AnimationName;
   byLetter?: boolean;
   duration?: string;
@@ -11,7 +11,7 @@ type AnimationProps = {
   iteration?: number;
   direction?: string;
   fillMode?: string;
-};
+}
 
 interface StyledTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children: JSX.Element | JSX.Element[] | string | string[] | number | number[];
