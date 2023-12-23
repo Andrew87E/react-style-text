@@ -150,19 +150,22 @@ const Playground = () => {
             animationObject === "letters" &&
             <LettersContainer key={counter}>
                 {
-                  <StyledText
-                  animationProps={{
-                    animationname: animationType,
-                    duration: `${duration}ms`,
-                    delay: `${delay}s`,
-                    direction: direction,
-                    timing: timingFunction,
-                    iteration: iterationCount,
-                    fillMode: fillMode,
-                    byLetter: true,
-                  }}>
-                    {item}
-                  </StyledText>
+      Letters.map((item, index) => (
+          <StyledText
+          key={index}
+          animationProps={{
+            animationname: animationType,
+            duration: `${duration}ms`,
+            delay: `${delay}s`,
+            direction: direction,
+            timing: timingFunction,
+            iteration: iterationCount,
+            fillMode: fillMode,
+            byLetter: true,
+        }}>
+          {item}
+        </StyledText>
+      ))
                 }
               </LettersContainer>
           }
