@@ -17,7 +17,7 @@ const CodeContainer = ({
       <StyledCode>
         {
           animationObject === "object" &&
-          `<MovingComponent
+          `<StyledText
   type="${animationType}"
   duration="${duration}ms"
   delay="${delay}s"
@@ -25,14 +25,14 @@ const CodeContainer = ({
   timing="${timingFunction}"
   iteration="${iterationCount}"
   fillMode="${fillMode}">
-  React-Moving-Text
-</MovingComponent>`.trim()
+  React-Style-Text
+</StyledText>`.trim()
         }
 
 {
   animationObject === "letters" &&
   `Letters.map((letter, index) =>
-      <MovingComponent
+      <StyledText
         type="${animationType}"
         duration="${duration}ms"
         delay="index * ${interval}ms"
@@ -41,13 +41,13 @@ const CodeContainer = ({
         iteration="${iterationCount}"
         fillMode="${fillMode}">
         {letter}
-      </MovingComponent>)`.trim()
+      </StyledText>)`.trim()
 
 }
 
 {
   animationObject === "multiline" &&
-  `<MovingComponent type="typewriter"
+  `<StyledText type="typewriter"
   dataText={[
   'Sushi',
   'Pizza',

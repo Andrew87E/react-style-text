@@ -1,28 +1,17 @@
 import React from 'react'
-import MovingComponent from 'react-moving-text'
+import { StyledText, Typewriter } from 'react-style-text'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo, faCode } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 import Select from '../atoms/selectMenu'
 import RoundButton from '../atoms/roundButton'
-import Modal from '../atoms/modal'
 import RangeController from '../atoms/rangeController'
 import Checkbox from '../atoms/checkbox'
 import CodeContainer from '../atoms/codeContainer'
-import CheckboxButton from '../atoms/checkboxButton'
-import SelectPanel from '../atoms/selectPanel'
 import { TimingFunctionItems, DirectionItems, FillModeItems, AnimationTypes } from './static'
 
-const Text = "React-Moving-Text"
+const Text = "react-style-text"
 const Letters = Text.split("")
-const AnimationOptions = {
-  duration: "",
-  delay: "",
-  iteration: "",
-  timingFunction: "ease",
-  direction: "normal",
-  fillMode: "none"
-}
 
 const Playground = () => {
 
@@ -140,50 +129,54 @@ const Playground = () => {
         <ResultField>
           {
             animationObject === "object" &&
-              <MovingComponent
+              <StyledText
                 key={counter}
-                type={animationType}
-                duration={`${duration}ms`}
-                delay={`${delay}s`}
-                direction={direction}
-                timing={timingFunction}
-                iteration={iterationCount}
-                fillMode={fillMode}
+                animationProps={{
+                  animationname: animationType,
+                  duration: `${duration}ms`,
+                  delay: `${delay}s`,
+                  direction: direction,
+                  timing: timingFunction,
+                  iteration: iterationCount,
+                  fillMode: fillMode,
+                  byLetter: false,
+                }}
+                
               >{Text}
-              </MovingComponent>
+              </StyledText>
           }
 
           {
             animationObject === "letters" &&
             <LettersContainer key={counter}>
                 {
-                  Letters.map((item, index) =>
-                  <MovingComponent
-                    type={animationType}
-                    duration={`${duration}ms`}
-                    delay={`${index * interval}ms`}
-                    direction={direction}
-                    timing={timingFunction}
-                    iteration={iterationCount}
-                    fillMode={fillMode}
-                    key={index}>
+                  <StyledText
+                  animationProps={{
+                    animationname: animationType,
+                    duration: `${duration}ms`,
+                    delay: `${delay}s`,
+                    direction: direction,
+                    timing: timingFunction,
+                    iteration: iterationCount,
+                    fillMode: fillMode,
+                    byLetter: true,
+                  }}>
                     {item}
-                  </MovingComponent>)
+                  </StyledText>
                 }
               </LettersContainer>
           }
 
           {
             animationObject === "multiline" &&
-            <MovingComponent
-              type="typewriter"
-              dataText={[
+            <Typewriter
+              datatext={[
                 'Sushi',
                 'Pizza',
                 'Brötchen',
                 'Salat'
               ]}
-              cursorColor="#2196f3"
+              cursorcolor="#5cbd6b"
             />
           }
 

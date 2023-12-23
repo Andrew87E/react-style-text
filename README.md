@@ -12,7 +12,7 @@ React Component to show animated text and objects, built with [styled-components
 
 The Component provides regular animation for common object and some animation effects especially for typography like letters and multi-line text.
 
-<!-- **View [Demo and Playground](https://yidaoj.github.io/react-style-text/)** -->
+<!-- **View [Demo and Playground](https://andrew87e.github.io/react-style-text/)** -->
 
 ## Installation
 

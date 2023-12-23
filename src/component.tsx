@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Typer from "./typer";
 
@@ -36,7 +36,6 @@ const StyledElement = styled.div<AnimationProps>`
   animation-iteration-count: ${({ iteration }) => iteration || "infinite"};
   animation-direction: ${({ direction }) => direction || "alternate"};
   animation-fill-mode: ${({ fillMode }) => fillMode || "forwards"};
-  byletter: ${({ byLetter }) => (byLetter ? "true" : "false")};
 `;
 
 type AnimationName = keyof typeof Animations;
@@ -57,6 +56,57 @@ export const StyledText = ({
   animationProps,
   ...props
 }: StyledTextProps) => {
+  if (animationProps && animationProps.byLetter) {
+    if (typeof children === "string" || typeof children === "number") {
+      const [displayedLabel, setDisplayedLabel] = useState("");
+      useEffect(() => {
+        let i = 0;
+        let delay =
+          animationProps.delay !== null && animationProps.delay !== undefined
+            ? parseInt(animationProps.delay)
+            : 500;
+        if (animationProps.byLetter) {
+          const interval = setInterval(() => {
+            if (i < children.toString().length) {
+              setDisplayedLabel(
+                (prevLabel) => prevLabel + children.toString().charAt(i)
+              );
+              i++;
+            } else {
+              clearInterval(interval);
+            }
+          }, delay);
+
+          // Clean up the interval on unmount
+          return () => clearInterval(interval);
+        } else {
+          setDisplayedLabel(children.toString());
+        }
+      }, [children.toString(), animationProps.byLetter]);
+      return (
+        <StyledElement {...props} {...animationProps}>
+          {displayedLabel}
+        </StyledElement>
+      );
+    } else {
+      const err = new Error();
+      const stackLines = err.stack?.split("\n");
+      const callerLine = stackLines?.[2];
+      const callerLineParts = callerLine?.split("/");
+      const callerFileName = callerLineParts?.[callerLineParts.length - 1];
+      const callerFileNameParts = callerFileName?.split(":");
+      const callerLineNumber =
+        callerFileNameParts?.[callerFileNameParts.length - 2];
+      const callerFileNameAndLineNumber = `${callerFileName}:${callerLineNumber}`;
+      console.error(
+        `children must be a string when using byLetter animation prop. ${callerFileNameAndLineNumber}`
+      );
+      throw new Error(
+        `children must be a string when using byLetter animation prop. ${callerFileNameAndLineNumber}`
+      );
+    }
+  }
+
   return (
     <StyledElement {...props} {...animationProps!}>
       {children}

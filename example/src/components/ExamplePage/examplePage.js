@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import MovingComponent from 'react-moving-text'
+import { StyledText } from 'react-style-text'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faCode } from '@fortawesome/free-solid-svg-icons'
 import SelectPanel from '../atoms/selectPanel'
@@ -91,7 +91,7 @@ const ExamplePage = ({}) => {
 
     return `
 import React, { useState } from 'react'
-import MovingComponent from 'react-moving-text'
+import {StyledText} from 'react-style-text'
 
 const AnimationsForChaining = [${itemsText}]
 
@@ -106,15 +106,15 @@ const AnimationChain = () => {
   }
 
   return (
-    <MovingComponent
+    <StyledText
       onAnimationEnd={handleChainAnimation}
       type={animationType}
       duration="1000ms"
       timing="linear"
       fillMode="forwards"
       iteration={1}>
-      React-Moving-Text
-    </MovingComponent>
+      react-style-text
+    </StyledText>
   )
 }
 `
@@ -142,9 +142,9 @@ const AnimationChain = () => {
   return (
     <ExampleContainer>
       <div>
-        <StyledText>
+        <ExampleText>
           Choose animations for chaining:
-        </StyledText>
+        </ExampleText>
         <SelectPanel
           items={AnimationTypes}
           onSelectItem={setSelectedItems}
@@ -152,15 +152,15 @@ const AnimationChain = () => {
       </div>
       <ResultContainer className="resultContainer">
         <ResultField>
-          <MovingComponent
+          <StyledText
             onAnimationEnd={handleChainAnimation}
             type={animationType}
             duration="1000ms"
             timing="linear"
             fillMode="forwards"
             iteration={1}>
-            React-Moving-Text
-          </MovingComponent>
+            react-style-text
+          </StyledText>
         </ResultField>
         <ButtonGroupContainer>
             <RoundButton
@@ -195,7 +195,7 @@ const ExampleContainer = styled.div`
   padding: 20px 100px;
 `
 
-const StyledText = styled.div`
+const ExampleText = styled.div`
   display: block;
   width: 100%;
   margin: 20px 0px;
