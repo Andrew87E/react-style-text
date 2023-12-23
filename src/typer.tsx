@@ -19,13 +19,13 @@ export type TypewriterProps = {
  * @description
  * A typewriter component that takes in an array of strings and types them out one by one.
  *
- * @param datatext - An array of strings to be typed out.
+ * @prop datatext - An array of strings to be typed out.
  *
- * @param statictext - A string that is displayed before the typewriter effect. Default is an empty string.
+ * @prop statictext - A string that is displayed before the typewriter effect. Default is an empty string.
  *
- * @param cursorcolor - The color of the cursor.
+ * @prop cursorcolor - The color of the cursor.
  *
- * @param typingspeed - The speed at which the text is typed out in milliseconds. Default is 150ms
+ * @prop typingspeed - The speed at which the text is typed out in milliseconds. Default is 150ms
  *
  * @example
  * import { Typewriter } from "react-typewriter-effect";
@@ -98,8 +98,6 @@ const Typer: React.FC<TypewriterProps> = ({
     </div>
   );
 };
-
-export default Typer;
 
 const blink = keyframes`
   50% {

@@ -12,7 +12,7 @@ jest.useFakeTimers();
 describe("TypewriterComponent", () => {
   it("displays text one letter at a time", async () => {
     const textArray = ["Hello", "World", "Example"];
-    render(<Typewriter datatext={textArray} />);
+    render(<Typewriter datatext={textArray}  />);
 
     // Initially, there should be no text
     textArray.forEach((text) => {
