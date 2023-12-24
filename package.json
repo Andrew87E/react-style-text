@@ -1,7 +1,7 @@
 {
   "name": "react-style-text",
   "homepage": "https://andrew87e.github.io/react-style-text",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "revival of react-moving-text with typescript",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack --watch",
-    "build": "rm -rf ./dist && npx tsc && webpack && npm pack",
+    "build": "rm -rf ./dist && npx tsc && webpack",
     "predeploy": "cd example && npm install && npm run build && ",
     "prepublish": "rm -rf ./dist && npm run build",
     "deploy": "gh-pages -d example/dist",

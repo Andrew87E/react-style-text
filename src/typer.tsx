@@ -5,12 +5,12 @@ interface CursorProps {
   cursorcolor?: string;
 }
 
-export type TypewriterProps = {
+export interface TypewriterProps extends React.HTMLAttributes<HTMLElement> {
   datatext: string[];
   statictext?: string;
   cursorcolor?: string;
   typingspeed?: number;
-};
+}
 
 /**
  *
