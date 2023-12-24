@@ -10,7 +10,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack --watch",
-    "build": "rm -rf ./dist && npx tsc && webpack && npm pack",
+    "build": "rm -rf ./dist && npx tsc && webpack",
     "predeploy": "cd example && npm install && npm run build && ",
     "prepublish": "rm -rf ./dist && npm run build",
     "deploy": "gh-pages -d example/dist",
