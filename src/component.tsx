@@ -17,7 +17,9 @@ type fillmode = "none" | "forwards" | "backwards" | "both";
 type iteration = "infinite" | number;
 type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
 
-interface AnimatedComponentProps extends AnimationProps {
+interface AnimatedComponentProps
+  extends AnimationProps,
+    React.HTMLAttributes<HTMLElement> {
   children:
     | JSX.Element
     | JSX.Element[]
@@ -26,7 +28,6 @@ interface AnimatedComponentProps extends AnimationProps {
     | string[]
     | number
     | number[];
-  animationProps?: AnimationProps;
 }
 
 // animation-name: ${props => props.animationName ? Animations[props.animationName] : Animations["spin"]};
