@@ -1,7 +1,7 @@
 {
   "name": "react-style-text",
   "homepage": "https://andrew87e.github.io/react-style-text",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "revival of react-moving-text with typescript",
   "repository": {
     "type": "git",
