@@ -62,6 +62,7 @@ const Playground = () => {
       <FormContainer className="playground_form">
         <AnimatedComponent
           onAnimationEnd={() => setInitialAnimationFinished(true)}
+          className="playground_form"
           animationname="fadeInFromLeft"
           duration="1000ms"
           delay="0ms"
