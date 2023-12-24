@@ -1,7 +1,7 @@
 import React, { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import styled, { keyframes } from "styled-components";
 
-interface AnimationProps {
+interface AnimationProps extends React.HTMLAttributes<HTMLElement> {
   animationname: AnimationName;
   byletter?: boolean;
   duration?: string;
@@ -18,8 +18,8 @@ type iteration = "infinite" | number;
 type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
 
 interface AnimatedComponentProps
-  extends AnimationProps,
-    React.HTMLAttributes<HTMLElement> {
+  extends AnimationProps
+     {
   children:
     | JSX.Element
     | JSX.Element[]
