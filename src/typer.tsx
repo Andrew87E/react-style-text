@@ -28,7 +28,7 @@ export interface TypewriterProps extends React.HTMLAttributes<HTMLElement> {
  * @prop typingspeed - The speed at which the text is typed out in milliseconds. Default is 150ms
  *
  * @example
- * import { Typewriter } from "react-typewriter-effect";
+ * import { Typewriter } from "react-style-text";
  *
  * const App = () => {
  * return (

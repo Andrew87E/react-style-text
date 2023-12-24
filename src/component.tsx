@@ -17,9 +17,7 @@ type fillmode = "none" | "forwards" | "backwards" | "both";
 type iteration = "infinite" | number;
 type timing = "ease" | "linear" | "ease-in" | "ease-out" | "ease-in-out";
 
-interface AnimatedComponentProps
-  extends AnimationProps
-     {
+interface AnimatedComponentProps extends AnimationProps {
   children:
     | JSX.Element
     | JSX.Element[]
@@ -68,7 +66,7 @@ type AnimationName = keyof typeof Animations;
  * @param children - The text to be animated.
  *
  * @example
- * import { AnimatedComponent } from "react-typewriter-effect";
+ * import { AnimatedComponent } from "react-style-text";
  *
  * const App = () => {
  * return (
