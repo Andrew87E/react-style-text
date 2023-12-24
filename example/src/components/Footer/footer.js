@@ -12,15 +12,13 @@ const Footer = () => {
       Made with
       <AnimatedComponent
         style={{ margin: "0px 10px", color: "red" }}
-        animationProps={{
-          animationname: "spin",
-          duration: "2000ms",
-          delay: "0ms",
-          direction: "normal",
-          timing: "linear",
-          iteration: "infinite",
-          fillmode: "none",
-        }}
+        animationname="shakeMix"
+        duration="2000ms"
+        delay="0ms"
+        direction="normal"
+        timing="linear"
+        iteration="infinite"
+        fillmode="none"
       >
         ❤
       </AnimatedComponent>
@@ -28,15 +26,13 @@ const Footer = () => {
       {itsaMe.map((letter, index) => (
         <AnimatedComponent
           key={index}
-          animationProps={{
-            animationname: "flipIn",
-            duration: "2000ms",
-            delay: ` ${index * 100}ms`,
-            direction: "normal",
-            timing: "ease-in-out",
-            iteration: "1",
-            fillmode: "none",
-          }}
+          animationname="flipIn"
+          duration="2000ms"
+          delay={` ${index * 100}ms`}
+          direction="normal"
+          timing="ease-in-out"
+          iteration="1"
+          fillmode="none"
         >
           <ExternalLink
             // href="https://github.com/andrew87e"
