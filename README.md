@@ -160,7 +160,7 @@ const MyTypewriter = () => {
 
   return (
     <Typewriter
-      dataText={text}
+      datatext={text}
       cursorcolor="green"
       statictext="Example Text"
     />
