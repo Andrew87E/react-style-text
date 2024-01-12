@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build && npm run pack
+        run: npm run build && npm pack
 
       - name: Test
         run: npm test
